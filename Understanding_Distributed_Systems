@@ -1,0 +1,21 @@
+(Brief)
+-----------------------
+-- 2 main components:
+      - Network
+      - Nodes
+
+-- Fault Tolerance
+-- 2 Kinds of System Failure:
+      1. Node Failure
+      2. Network Failure
+
+-- Node Failure:
+      1. Fail-Stop
+      2. Byzantine
+ 
+ 
+-- Replication - To avoid loosing data in case of node failure.
+-- Imp. Properties of distributed systems:
+    1. High Availability
+    2. Scalability
+    3. Transaparency
