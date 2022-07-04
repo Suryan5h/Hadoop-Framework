@@ -1,3 +1,6 @@
+Dataset:
+Working on e-commerce website click data. (2 datasets)
+
 Questions:
 1.Find the total revenue generated due to purchases made in October 
 2. Write a query to yield the total sum of purchases per month in a single output. 
