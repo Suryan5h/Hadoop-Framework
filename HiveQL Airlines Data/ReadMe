@@ -1,4 +1,7 @@
 Airlines_Data
 
 Using Amazon EMR and hive to run queries on dataset. Use partition, bucketing, sorting and other hive queries.
-Dataset is attached.
+Dataset dictionary is attached.
+
+Data is there in the public S3 bucket.
+Link - https://ml-cloud-dataset.s3.amazonaws.com/Airlines_data.txt
