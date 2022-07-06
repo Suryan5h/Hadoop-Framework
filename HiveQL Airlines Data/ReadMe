@@ -1,0 +1,4 @@
+Airlines_Data
+
+Using Amazon EMR and hive to run queries on dataset. Use partition, bucketing, sorting and other hive queries.
+Dataset is attached.
