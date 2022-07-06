@@ -1,0 +1,301 @@
+[hadoop@ip-172-31-44-35 ~]$ pwd
+/home/hadoop
+[hadoop@ip-172-31-44-35 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> create database if not exists demo ;
+OK
+Time taken: 1.993 seconds
+hive> describe database demo;
+OK
+demo            hdfs://ip-172-31-44-35.ec2.internal:8020/user/hive/warehouse/demo.db    hadoop  USER
+Time taken: 1.109 seconds, Fetched: 1 row(s)
+hive> show databases;
+OK
+default
+demo
+Time taken: 0.212 seconds, Fetched: 2 row(s)
+hive> use demo;
+OK
+Time taken: 0.067 seconds
+hive> create external table if not exists flight_info (Entry_Id int, Year int, Month int,DayofMonth int, DayOfWeek int, DepTime int, CRSDepTime int, ArrTime int, CRSArrTime int, UniqueCarrier string, FlightNum int, TailNum string, ActualElapsedTime int, CRSElapsedTime int, AirTime int, ArrDelay int, DepDelay int, Origin string, Dest string, Distance int, TaxiIn int, TaxiOut int, Cancelled boolean, CancellationCode string, Diverted boolean, CarrierDelay int, WeatherDelay int, NASDelay int, SecurityDelay int, LateAircraftDelay int) row format delimited fields terminated by '|' lines terminated by "\n" stored as textfile;
+OK
+Time taken: 1.347 seconds
+hive> describe flight_info;
+OK
+entry_id                int
+year                    int
+month                   int
+dayofmonth              int
+dayofweek               int
+deptime                 int
+crsdeptime              int
+arrtime                 int
+crsarrtime              int
+uniquecarrier           string
+flightnum               int
+tailnum                 string
+actualelapsedtime       int
+crselapsedtime          int
+airtime                 int
+arrdelay                int
+depdelay                int
+origin                  string
+dest                    string
+distance                int
+taxiin                  int
+taxiout                 int
+cancelled               boolean
+cancellationcode        string
+diverted                boolean
+carrierdelay            int
+weatherdelay            int
+nasdelay                int
+securitydelay           int
+lateaircraftdelay       int
+Time taken: 0.137 seconds, Fetched: 30 row(s)
+
+hive> create external table if not exists flight_info (Entry_Id int, Year int, Month int,DayofMonth int, DayOfWeek int, DepTime int, CRSDepTime int, ArrTime int, CRSArrTime int, UniqueCarrier string, FlightNum int, TailNum string, ActualElapsedTime int, CRSElapsedTime int, AirTime int, ArrDelay int, DepDelay int, Origin string, Dest string, Distance int, TaxiIn int, TaxiOut int, Cancelled boolean, CancellationCode string, Diverted boolean, CarrierDelay int, WeatherDelay int, NASDelay int, SecurityDelay int, LateAircraftDelay int) row format delimited fields terminated by '|' lines terminated by "\n" stored as textfile;
+OK
+Time taken: 0.84 seconds
+hive> show tables;
+OK
+flight_info
+Time taken: 0.126 seconds, Fetched: 1 row(s)
+hive> load data local inpath '/home/hadoop/Airlines_data.txt' into table flight_info;
+Loading data to table default.flight_info
+OK
+Time taken: 1.153 seconds
+hive> select * from flight_info limit 5;
+OK
+1       2006    1       11      3       743     745     1024    1018    US      343     N657AW  281     273     223 6-2      ATL     PHX     1587    45      13      NULL    NA      NULL    0       0       0       0       0
+2       2006    1       11      3       1053    1053    1313    1318    US      613     N834AW  260     265     214 -5       0       ATL     PHX     1587    27      19      NULL    NA      NULL    0       0       0       0       0
+3       2006    1       11      3       1915    1915    2110    2133    US      617     N605AW  235     258     220 -23      0       ATL     PHX     1587    4       11      NULL    NA      NULL    0       0       0       0       0
+4       2006    1       11      3       1753    1755    1925    1933    US      300     N312AW  152     158     126 -8       -2      AUS     PHX     872     16      10      NULL    NA      NULL    0       0       0       0       0
+5       2006    1       11      3       824     832     1015    1015    US      765     N309AW  171     163     132 0-8      AUS     PHX     872     27      12      NULL    NA      NULL    0       0       0       0       0
+Time taken: 3.107 seconds, Fetched: 5 row(s)
+hive> set hive.cli.print.header=true;
+hive> select * from flight_info limit 5;
+OK
+flight_info.entry_id    flight_info.year        flight_info.month       flight_info.dayofmonth  flight_info.dayofweekflight_info.deptime     flight_info.crsdeptime  flight_info.arrtime     flight_info.crsarrtime  flight_info.uniquecarrier    flight_info.flightnum   flight_info.tailnum     flight_info.actualelapsedtime   flight_info.crselapsedtime  flight_info.airtime      flight_info.arrdelay    flight_info.depdelay    flight_info.origin      flight_info.dest    flight_info.distance     flight_info.taxiin      flight_info.taxiout     flight_info.cancelled   flight_info.cancellationcode flight_info.diverted    flight_info.carrierdelay        flight_info.weatherdelay        flight_info.nasdelayflight_info.securitydelay        flight_info.lateaircraftdelay
+1       2006    1       11      3       743     745     1024    1018    US      343     N657AW  281     273     223 6-2      ATL     PHX     1587    45      13      NULL    NA      NULL    0       0       0       0       0
+2       2006    1       11      3       1053    1053    1313    1318    US      613     N834AW  260     265     214 -5       0       ATL     PHX     1587    27      19      NULL    NA      NULL    0       0       0       0       0
+3       2006    1       11      3       1915    1915    2110    2133    US      617     N605AW  235     258     220 -23      0       ATL     PHX     1587    4       11      NULL    NA      NULL    0       0       0       0       0
+4       2006    1       11      3       1753    1755    1925    1933    US      300     N312AW  152     158     126 -8       -2      AUS     PHX     872     16      10      NULL    NA      NULL    0       0       0       0       0
+5       2006    1       11      3       824     832     1015    1015    US      765     N309AW  171     163     132 0-8      AUS     PHX     872     27      12      NULL    NA      NULL    0       0       0       0       0
+Time taken: 0.368 seconds, Fetched: 5 row(s)
+hive> create external table if not exists flights_info (Entry_Id int, Year int, Month int,DayofMonth int, DayOfWeek int, DepTime int, CRSDepTime int, ArrTime int, CRSArrTime int, UniqueCarrier string, FlightNum int, TailNum string, ActualElapsedTime int, CRSElapsedTime int, AirTime int, ArrDelay int, DepDelay int, Origin string, Dest string, Distance int, TaxiIn int, TaxiOut int, Cancelled int, CancellationCode string, Diverted int, CarrierDelay int, WeatherDelay int, NASDelay int, SecurityDelay int, LateAircraftDelay int) row format delimited fields terminated by '|' lines terminated by "\n" stored as textfile;
+OK
+Time taken: 0.161 seconds
+hive> show tables;
+OK
+tab_name
+flight_info
+flights_info
+Time taken: 0.051 seconds, Fetched: 2 row(s)
+hive> drop table flight_info;
+OK
+Time taken: 0.21 seconds
+hive> show tables;
+OK
+tab_name
+flights_info
+Time taken: 0.082 seconds, Fetched: 1 row(s)
+hive> load data local inpath '/home/hadoop/Airlines_data.txt' into table flights_info;
+Loading data to table default.flights_info
+OK
+Time taken: 0.698 seconds
+hive> select * from flights_info limit 1;
+OK
+flights_info.entry_id   flights_info.year       flights_info.month      flights_info.dayofmonth flights_info.dayofweek       flights_info.deptime    flights_info.crsdeptime flights_info.arrtime    flights_info.crsarrtime flights_info.uniquecarrier   flights_info.flightnum  flights_info.tailnum    flights_info.actualelapsedtime  flights_info.crselapsedtime  flights_info.airtime    flights_info.arrdelay   flights_info.depdelay   flights_info.origin     flights_info.dest    flights_info.distance   flights_info.taxiin     flights_info.taxiout    flights_info.cancelled  flights_info.cancellationcode        flights_info.diverted   flights_info.carrierdelay       flights_info.weatherdelay       flights_info.nasdelay        flights_info.securitydelay      flights_info.lateaircraftdelay
+1       2006    1       11      3       743     745     1024    1018    US      343     N657AW  281     273     223 6-2      ATL     PHX     1587    45      13      0       NA      0       0       0       0       0       0
+Time taken: 0.277 seconds, Fetched: 1 row(s)
+hive> set hive.exec.dynamic.partition = true;
+hive> set hive.exec.dynamic.partition.mode = nonstrict;
+hive> insert into table dyn_parts_flights_info partition(Year) select * from flights_info;
+FAILED: SemanticException org.apache.hadoop.hive.ql.metadata.InvalidTableException: Table not found dyn_parts_flights_info
+hive> create external table if not exists dyn_part_flights_info (Entry_Id int, Year int, Month int,DayofMonth int, DayOfWeek int, DepTime int, CRSDepTime int, ArrTime int, CRSArrTime int, UniqueCarrier string, FlightNum int, TailNum string, ActualElapsedTime int, CRSElapsedTime int, AirTime int, ArrDelay int, DepDelay int, Origin string, Dest string, Distance int, TaxiIn int, TaxiOut int, Cancelled int, CancellationCode string, Diverted int, CarrierDelay int, WeatherDelay int, NASDelay int, SecurityDelay int, LateAircraftDelay int) partitioned by (Year string) row format delimited fields terminated by '|' lines terminated by "\n" stored as textfile;
+FAILED: SemanticException [Error 10035]: Column repeated in partitioning columns
+hive> create external table if not exists dyn_part_flights_info (Entry_Id int, Month int,DayofMonth int, DayOfWeek int, DepTime int, CRSDepTime int, ArrTime int, CRSArrTime int, UniqueCarrier string, FlightNum int, TailNum string, ActualElapsedTime int, CRSElapsedTime int, AirTime int, ArrDelay int, DepDelay int, Origin string, Dest string, Distance int, TaxiIn int, TaxiOut int, Cancelled int, CancellationCode string, Diverted int, CarrierDelay int, WeatherDelay int, NASDelay int, SecurityDelay int, LateAircraftDelay int) partitioned by (Year string) row format delimited fields terminated by '|' lines terminated by "\n" stored as textfile;
+OK
+Time taken: 0.104 seconds
+hive> show tables;
+OK
+tab_name
+dyn_part_flights_info
+flights_info
+Time taken: 0.089 seconds, Fetched: 2 row(s)
+
+hive> select distinct Year from flights_info;
+Query ID = hadoop_20220706145522_27334b58-4108-41e6-a78a-4d285ab991d7
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      2          2        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 6.50 s
+----------------------------------------------------------------------------------------------
+OK
+year
+2007
+2004
+2005
+2006
+2008
+Time taken: 15.322 seconds, Fetched: 5 row(s)
+
+hive> show tables;
+OK
+tab_name
+dyn_part_flights_info
+flights_info
+Time taken: 0.067 seconds, Fetched: 2 row(s)
+hive> create external table dyn_part_two (entry_id, month) partitioned by (Year) row format delimited fields terminated by '|' lines terminated by '\n\;
+    > create external table dyn_part_two (entry_id, month) partitioned by (Year) row format delimited fields terminated by '|' lines terminated by '\n\;[hadoop@ip-172-31-44-35 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> show tables;
+OK
+dyn_part_flights_info
+flights_info
+Time taken: 0.918 seconds, Fetched: 2 row(s)
+
+hive> create external table dyn_part_two (entry_id int, month int) partitioned by (Year int) row format delimited fields terminated by '|' lines terminated by '\n';
+OK
+Time taken: 0.367 seconds
+hive> set hive.exec.dynamic.partition = true;
+hive> set hive.exec.dynamic.partition.mode = nonstrict;
+hive> insert into table dyn_part_two partition(Year) select Entry_Id, Month, Year from flights_info;
+Query ID = hadoop_20220706150706_7bbb0d4d-3f09-4f3b-b486-96da1220f67d
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0004)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      2          2        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 8.18 s
+----------------------------------------------------------------------------------------------
+Loading data to table default.dyn_part_two partition (year=null)
+
+Loaded : 5/5 partitions.
+         Time taken to load dynamic partitions: 0.847 seconds
+         Time taken for adding to write entity : 0.003 seconds
+OK
+Time taken: 15.195 seconds
+
+hive> exit
+    > ;
+[hadoop@ip-172-31-44-35 ~]$ hadoop fs -ls
+Found 1 items
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-06 14:31 .hiveJars
+[hadoop@ip-172-31-44-35 ~]$ pwd
+/home/hadoop
+[hadoop@ip-172-31-44-35 ~]$ ls
+Airlines_data.txt  derby.log
+[hadoop@ip-172-31-44-35 ~]$ hadoop fs -ls /user/hive/warehouse/
+Found 5 items
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 14:33 /user/hive/warehouse/demo.db
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 14:59 /user/hive/warehouse/dyn_part_flights_info
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 14:38 /user/hive/warehouse/flight_info
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 14:41 /user/hive/warehouse/flights_info
+[hadoop@ip-172-31-44-35 ~]$ hadoop fs -ls /user/hive/warehouse/dyn_part_two
+Found 5 items
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two/year=2004
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two/year=2005
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two/year=2006
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two/year=2007
+drwxrwxrwt   - hadoop hdfsadmingroup          0 2022-07-06 15:07 /user/hive/warehouse/dyn_part_two/year=2008
+[hadoop@ip-172-31-44-35 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> select distinct Month from flights_info;
+Query ID = hadoop_20220706151548_1e039107-ca6f-4c42-bbd8-9f31816dab49
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0005)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      2          2        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 7.28 s
+----------------------------------------------------------------------------------------------
+OK
+1
+Time taken: 13.41 seconds, Fetched: 1 row(s)
+
+hive> select Year,avg(taxiout) as taxiouttime from flights_info group by Year order by taxiouttime desc;
+Query ID = hadoop_20220706152553_1ce4c6e1-ade5-48b3-8747-114270ef033d
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0006)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      2          2        0        0       0       0
+Reducer 3 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 03/03  [==========================>>] 100%  ELAPSED TIME: 6.90 s
+----------------------------------------------------------------------------------------------
+OK
+2004    18.5009
+2005    18.33555
+2006    15.25945
+2008    10.721310642621285
+2007    9.75865
+Time taken: 16.458 seconds, Fetched: 5 row(s)
+hive> select abs(avg(ArrDelay)) from flights_info where ArrDelay<0 and Year=2008;
+Query ID = hadoop_20220706152826_5be7283c-e64a-4293-a508-e1e1e629363e
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0006)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 6.41 s
+----------------------------------------------------------------------------------------------
+OK
+9.080476565134315
+Time taken: 7.742 seconds, Fetched: 1 row(s)
+hive> select count(*) from flights_info where DayOfWeek=5 and Year=2005 and Diverted=1;
+Query ID = hadoop_20220706153432_63c00105-79a7-4d70-a692-5e70516fae26
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657116257923_0007)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 6.99 s
+----------------------------------------------------------------------------------------------
+OK
+7
+Time taken: 16.589 seconds, Fetched: 1 row(s)
+
