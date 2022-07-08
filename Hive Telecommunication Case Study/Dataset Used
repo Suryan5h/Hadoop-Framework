@@ -1,0 +1,11 @@
+You can download the data sets from the links below.
+
+ 
+
+CRM data  -https://telecom-case-study-ml-hive-sqoop.s3.amazonaws.com/crm1.csv
+
+Device data- https://telecom-case-study-ml-hive-sqoop.s3.amazonaws.com/device1.csv
+
+Revenue data - https://telecom-case-study-ml-hive-sqoop.s3.amazonaws.com/rev1.csv 
+
+NOTE: Load this data into your hadoop -> rds tables (sql).
