@@ -1,0 +1,1837 @@
+                                                              during
+                                                              import
+-z,--compress                                                 Enable
+                                                              compression
+
+Incremental import arguments:
+   --check-column <column>        Source column to check for incremental
+                                  change
+   --incremental <import-type>    Define an incremental import of type
+                                  'append' or 'lastmodified'
+   --last-value <value>           Last imported value in the incremental
+                                  check column
+
+Output line formatting arguments:
+   --enclosed-by <char>               Sets a required field enclosing
+                                      character
+   --escaped-by <char>                Sets the escape character
+   --fields-terminated-by <char>      Sets the field separator character
+   --lines-terminated-by <char>       Sets the end-of-line character
+   --mysql-delimiters                 Uses MySQL's default delimiter set:
+                                      fields: ,  lines: \n  escaped-by: \
+                                      optionally-enclosed-by: '
+   --optionally-enclosed-by <char>    Sets a field enclosing character
+
+Input parsing arguments:
+   --input-enclosed-by <char>               Sets a required field encloser
+   --input-escaped-by <char>                Sets the input escape
+                                            character
+   --input-fields-terminated-by <char>      Sets the input field separator
+   --input-lines-terminated-by <char>       Sets the input end-of-line
+                                            char
+   --input-optionally-enclosed-by <char>    Sets a field enclosing
+                                            character
+
+Hive arguments:
+   --create-hive-table                         Fail if the target hive
+                                               table exists
+   --external-table-dir <hdfs path>            Sets where the external
+                                               table is in HDFS
+   --hive-database <database-name>             Sets the database name to
+                                               use when importing to hive
+   --hive-delims-replacement <arg>             Replace Hive record \0x01
+                                               and row delimiters (\n\r)
+                                               from imported string fields
+                                               with user-defined string
+   --hive-drop-import-delims                   Drop Hive record \0x01 and
+                                               row delimiters (\n\r) from
+                                               imported string fields
+   --hive-home <dir>                           Override $HIVE_HOME
+   --hive-import                               Import tables into Hive
+                                               (Uses Hive's default
+                                               delimiters if none are
+                                               set.)
+   --hive-overwrite                            Overwrite existing data in
+                                               the Hive table
+   --hive-partition-key <partition-key>        Sets the partition key to
+                                               use when importing to hive
+   --hive-partition-value <partition-value>    Sets the partition value to
+                                               use when importing to hive
+   --hive-table <table-name>                   Sets the table name to use
+                                               when importing to hive
+   --map-column-hive <arg>                     Override mapping for
+                                               specific column to hive
+                                               types.
+
+HBase arguments:
+   --column-family <family>    Sets the target column family for the
+                               import
+   --hbase-bulkload            Enables HBase bulk loading
+   --hbase-create-table        If specified, create missing HBase tables
+   --hbase-row-key <col>       Specifies which input column to use as the
+                               row key
+   --hbase-table <table>       Import to <table> in HBase
+
+HCatalog arguments:
+   --hcatalog-database <arg>                        HCatalog database name
+   --hcatalog-home <hdir>                           Override $HCAT_HOME
+   --hcatalog-partition-keys <partition-key>        Sets the partition
+                                                    keys to use when
+                                                    importing to hive
+   --hcatalog-partition-values <partition-value>    Sets the partition
+                                                    values to use when
+                                                    importing to hive
+   --hcatalog-table <arg>                           HCatalog table name
+   --hive-home <dir>                                Override $HIVE_HOME
+   --hive-partition-key <partition-key>             Sets the partition key
+                                                    to use when importing
+                                                    to hive
+   --hive-partition-value <partition-value>         Sets the partition
+                                                    value to use when
+                                                    importing to hive
+   --map-column-hive <arg>                          Override mapping for
+                                                    specific column to
+                                                    hive types.
+
+HCatalog import specific options:
+   --create-hcatalog-table             Create HCatalog before import
+   --drop-and-create-hcatalog-table    Drop and Create HCatalog before
+                                       import
+   --hcatalog-storage-stanza <arg>     HCatalog storage stanza for table
+                                       creation
+
+Accumulo arguments:
+   --accumulo-batch-size <size>          Batch size in bytes
+   --accumulo-column-family <family>     Sets the target column family for
+                                         the import
+   --accumulo-create-table               If specified, create missing
+                                         Accumulo tables
+   --accumulo-instance <instance>        Accumulo instance name.
+   --accumulo-max-latency <latency>      Max write latency in milliseconds
+   --accumulo-password <password>        Accumulo password.
+   --accumulo-row-key <col>              Specifies which input column to
+                                         use as the row key
+   --accumulo-table <table>              Import to <table> in Accumulo
+   --accumulo-user <user>                Accumulo user name.
+   --accumulo-visibility <vis>           Visibility token to be applied to
+                                         all rows imported
+   --accumulo-zookeepers <zookeepers>    Comma-separated list of
+                                         zookeepers (host:port)
+
+Code generation arguments:
+   --bindir <dir>                             Output directory for
+                                              compiled objects
+   --class-name <name>                        Sets the generated class
+                                              name. This overrides
+                                              --package-name. When
+                                              combined with --jar-file,
+                                              sets the input class.
+   --escape-mapping-column-names <boolean>    Disable special characters
+                                              escaping in column names
+   --input-null-non-string <null-str>         Input null non-string
+                                              representation
+   --input-null-string <null-str>             Input null string
+                                              representation
+   --jar-file <file>                          Disable code generation; use
+                                              specified jar
+   --map-column-java <arg>                    Override mapping for
+                                              specific columns to java
+                                              types
+   --null-non-string <null-str>               Null non-string
+                                              representation
+   --null-string <null-str>                   Null string representation
+   --outdir <dir>                             Output directory for
+                                              generated code
+   --package-name <name>                      Put auto-generated classes
+                                              in this package
+
+Generic Hadoop command-line arguments:
+(must preceed any tool-specific arguments)
+Generic options supported are:
+-conf <configuration file>        specify an application configuration file
+-D <property=value>               define a value for a given property
+-fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
+-jt <local|resourcemanager:port>  specify a ResourceManager
+-files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
+-libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
+-archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
+
+The general command line syntax is:
+command [genericOptions] [commandOptions]
+
+
+At minimum, you must specify --connect and --table
+Arguments to mysqldump and other subprograms may be supplied
+after a '--' on the command line.
+
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql:aws://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:08:06 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 09:08:11 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 09:08:11 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 09:08:11 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ sudo apt-get install mysql-connector-java*
+sudo: apt-get: command not found
+[hadoop@ip-172-31-44-109 ~]$ apt-get install mysql-connector-java*
+-bash: apt-get: command not found
+[hadoop@ip-172-31-44-109 ~]$ mysql --version
+mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1
+[hadoop@ip-172-31-44-109 ~]$ java --serion
+Unrecognized option: --serion
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+[hadoop@ip-172-31-44-109 ~]$ java --version
+Unrecognized option: --version
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm -u mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:16:24 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Error parsing arguments for import:
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Unrecognized argument: -u
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Unrecognized argument: mastersurya
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Unrecognized argument: -P
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Unrecognized argument: -m
+22/07/08 09:16:24 ERROR tool.BaseSqoopTool: Unrecognized argument: 1
+
+Try --help for usage instructions.
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:16:48 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 09:16:52 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 09:16:52 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 09:16:52 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:24:26 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 09:24:29 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 09:24:29 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 09:24:29 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:35:03 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 09:35:07 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 09:35:07 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 09:35:07 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -p -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:49:29 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+22/07/08 09:49:29 ERROR tool.BaseSqoopTool: Error parsing arguments for import:
+22/07/08 09:49:29 ERROR tool.BaseSqoopTool: Unrecognized argument: -p
+22/07/08 09:49:29 ERROR tool.BaseSqoopTool: Unrecognized argument: -m
+22/07/08 09:49:29 ERROR tool.BaseSqoopTool: Unrecognized argument: 1
+
+Try --help for usage instructions.
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 09:50:20 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 09:50:25 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 09:50:25 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 09:50:25 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ ^C
+[hadoop@ip-172-31-44-109 ~]$ mysql -h mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com -P 3306 -u mastersurya -p
+Enter password:
+mastersurya
+ERROR 2003 (HY000): Can't connect to MySQL server on 'mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com' (110)
+[hadoop@ip-172-31-44-109 ~]$ mastersurya
+-bash: mastersurya: command not found
+[hadoop@ip-172-31-44-109 ~]$ mysql -h mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com -P 3306 -u mastersurya -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 56
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazo' at line 1
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| telco              |
++--------------------+
+5 rows in set (0.04 sec)
+
+MySQL [(none)]> show tables;
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> use telco;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [telco]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| telco              |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [telco]> show tables;
++-----------------+
+| Tables_in_telco |
++-----------------+
+| crm             |
+| device          |
+| revenue         |
++-----------------+
+3 rows in set (0.01 sec)
+
+MySQL [telco]> exit;
+Bye
+[hadoop@ip-172-31-44-109 ~]$ sqoop list-databases --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:28:22 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+22/07/08 10:28:22 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 10:28:22 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.CatalogQueryManager.listDatabases(CatalogQueryManager.java:57)
+        at org.apache.sqoop.tool.ListDatabasesTool.run(ListDatabasesTool.java:49)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ sqoop list-databases --connect jdbc:postgresql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:28:36 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+22/07/08 10:28:37 INFO manager.SqlManager: Using default fetchSize of 1000
+22/07/08 10:28:37 ERROR manager.CatalogQueryManager: Failed to list databases
+java.sql.SQLNonTransientConnectionException: [Amazon][JDBC](10100) Connection Refused: [Amazon][JDBC](11640) Required Connection Key(s): PWD, UID; [Amazon][JDBC](11480) Optional Connection Key(s): AccessKeyID, AuthMech, AutoCreate, BlockingRowsMode, ClusterID, ConnSchema, DatabaseMetadataCurrentDbOnly, DbGroups, dbgroups_filter, DbGroupsFilter, DbUser, DefaultStringColumnLength, DelegationUID, DisableIsValidQuery, DriverLocale, DSILogLevel, EndpointUrl, FilterLevel, ForceLowercase, IAMDuration, KrbHostFQDN, KrbRealm, KrbServiceName, Language, loginTimeout, LogLevel, LogNamespace, LogPath, Mode, OpenSourceSubProtocolOverride, plugin_name, profile, QueryGroup, ReadOnly, Region, RowsFetchedPerBlock, SecretAccessKey, selectorProvider, selectorProviderArg, SessionToken, socketTimeout, ssl, sslcert, sslfactory, sslkey, SSLKeyStore, SSLKeyStorePwd, sslmode, sslpassword, sslrootcert, SSLTruststore , SSLTrustStorePath, tcpKeepAlive, TCPKeepAliveMinutes, unknownLength, verify-ca, verify-full
+        at com.amazon.exceptions.ExceptionConverter.toSQLException(Unknown Source)
+        at com.amazon.jdbc.common.BaseConnectionFactory.checkResponseMap(Unknown Source)
+        at com.amazon.jdbc.common.BaseConnectionFactory.doConnect(Unknown Source)
+        at com.amazon.jdbc.common.AbstractDriver.connect(Unknown Source)
+        at java.sql.DriverManager.getConnection(DriverManager.java:664)
+        at java.sql.DriverManager.getConnection(DriverManager.java:270)
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:902)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.CatalogQueryManager.listDatabases(CatalogQueryManager.java:57)
+        at org.apache.sqoop.tool.ListDatabasesTool.run(ListDatabasesTool.java:49)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+22/07/08 10:28:37 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: java.sql.SQLNonTransientConnectionException: [Amazon][JDBC](10100) Connection Refused: [Amazon][JDBC](11640) Required Connection Key(s): PWD, UID; [Amazon][JDBC](11480) Optional Connection Key(s): AccessKeyID, AuthMech, AutoCreate, BlockingRowsMode, ClusterID, ConnSchema, DatabaseMetadataCurrentDbOnly, DbGroups, dbgroups_filter, DbGroupsFilter, DbUser, DefaultStringColumnLength, DelegationUID, DisableIsValidQuery, DriverLocale, DSILogLevel, EndpointUrl, FilterLevel, ForceLowercase, IAMDuration, KrbHostFQDN, KrbRealm, KrbServiceName, Language, loginTimeout, LogLevel, LogNamespace, LogPath, Mode, OpenSourceSubProtocolOverride, plugin_name, profile, QueryGroup, ReadOnly, Region, RowsFetchedPerBlock, SecretAccessKey, selectorProvider, selectorProviderArg, SessionToken, socketTimeout, ssl, sslcert, sslfactory, sslkey, SSLKeyStore, SSLKeyStorePwd, sslmode, sslpassword, sslrootcert, SSLTruststore , SSLTrustStorePath, tcpKeepAlive, TCPKeepAliveMinutes, unknownLength, verify-ca, verify-full
+java.lang.RuntimeException: java.sql.SQLNonTransientConnectionException: [Amazon][JDBC](10100) Connection Refused: [Amazon][JDBC](11640) Required Connection Key(s): PWD, UID; [Amazon][JDBC](11480) Optional Connection Key(s): AccessKeyID, AuthMech, AutoCreate, BlockingRowsMode, ClusterID, ConnSchema, DatabaseMetadataCurrentDbOnly, DbGroups, dbgroups_filter, DbGroupsFilter, DbUser, DefaultStringColumnLength, DelegationUID, DisableIsValidQuery, DriverLocale, DSILogLevel, EndpointUrl, FilterLevel, ForceLowercase, IAMDuration, KrbHostFQDN, KrbRealm, KrbServiceName, Language, loginTimeout, LogLevel, LogNamespace, LogPath, Mode, OpenSourceSubProtocolOverride, plugin_name, profile, QueryGroup, ReadOnly, Region, RowsFetchedPerBlock, SecretAccessKey, selectorProvider, selectorProviderArg, SessionToken, socketTimeout, ssl, sslcert, sslfactory, sslkey, SSLKeyStore, SSLKeyStorePwd, sslmode, sslpassword, sslrootcert, SSLTruststore , SSLTrustStorePath, tcpKeepAlive, TCPKeepAliveMinutes, unknownLength, verify-ca, verify-full
+        at org.apache.sqoop.manager.CatalogQueryManager.listDatabases(CatalogQueryManager.java:73)
+        at org.apache.sqoop.tool.ListDatabasesTool.run(ListDatabasesTool.java:49)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+Caused by: java.sql.SQLNonTransientConnectionException: [Amazon][JDBC](10100) Connection Refused: [Amazon][JDBC](11640) Required Connection Key(s): PWD, UID; [Amazon][JDBC](11480) Optional Connection Key(s): AccessKeyID, AuthMech, AutoCreate, BlockingRowsMode, ClusterID, ConnSchema, DatabaseMetadataCurrentDbOnly, DbGroups, dbgroups_filter, DbGroupsFilter, DbUser, DefaultStringColumnLength, DelegationUID, DisableIsValidQuery, DriverLocale, DSILogLevel, EndpointUrl, FilterLevel, ForceLowercase, IAMDuration, KrbHostFQDN, KrbRealm, KrbServiceName, Language, loginTimeout, LogLevel, LogNamespace, LogPath, Mode, OpenSourceSubProtocolOverride, plugin_name, profile, QueryGroup, ReadOnly, Region, RowsFetchedPerBlock, SecretAccessKey, selectorProvider, selectorProviderArg, SessionToken, socketTimeout, ssl, sslcert, sslfactory, sslkey, SSLKeyStore, SSLKeyStorePwd, sslmode, sslpassword, sslrootcert, SSLTruststore , SSLTrustStorePath, tcpKeepAlive, TCPKeepAliveMinutes, unknownLength, verify-ca, verify-full
+        at com.amazon.exceptions.ExceptionConverter.toSQLException(Unknown Source)
+        at com.amazon.jdbc.common.BaseConnectionFactory.checkResponseMap(Unknown Source)
+        at com.amazon.jdbc.common.BaseConnectionFactory.doConnect(Unknown Source)
+        at com.amazon.jdbc.common.AbstractDriver.connect(Unknown Source)
+        at java.sql.DriverManager.getConnection(DriverManager.java:664)
+        at java.sql.DriverManager.getConnection(DriverManager.java:270)
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:902)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.CatalogQueryManager.listDatabases(CatalogQueryManager.java:57)
+        ... 7 more
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:postgresql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:29:18 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 10:29:22 INFO manager.SqlManager: Using default fetchSize of 1000
+22/07/08 10:29:22 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 10:29:22 ERROR manager.SqlManager: Error executing statement: java.sql.SQLException: [Amazon][JDBC](11380) Null pointer exception.
+java.sql.SQLException: [Amazon][JDBC](11380) Null pointer exception.
+        at com.amazon.redshift.client.PGClient.startSession(Unknown Source)
+        at com.amazon.redshift.client.PGClient.<init>(Unknown Source)
+        at com.amazon.redshift.core.PGJDBCConnection.connect(Unknown Source)
+        at com.amazon.jdbc.common.BaseConnectionFactory.doConnect(Unknown Source)
+        at com.amazon.jdbc.common.AbstractDriver.connect(Unknown Source)
+        at java.sql.DriverManager.getConnection(DriverManager.java:664)
+        at java.sql.DriverManager.getConnection(DriverManager.java:247)
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:904)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+Caused by: java.lang.NullPointerException
+        ... 26 more
+22/07/08 10:29:22 ERROR tool.ImportTool: Import failed: java.io.IOException: No columns to generate for ClassWriter
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1677)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+
+[hadoop@ip-172-31-44-109 ~]$ ^C
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:cj:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:34:18 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 10:34:21 ERROR tool.BaseSqoopTool: Got error creating database manager: java.io.IOException: No manager for connect string: jdbc:cj:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco
+        at org.apache.sqoop.ConnFactory.getManager(ConnFactory.java:192)
+        at org.apache.sqoop.tool.BaseSqoopTool.init(BaseSqoopTool.java:274)
+        at org.apache.sqoop.tool.ImportTool.init(ImportTool.java:96)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:616)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:35:33 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 10:35:37 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 10:35:37 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 10:35:37 ERROR sqoop.Sqoop: Got exception running Sqoop: java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+java.lang.RuntimeException: Could not load db driver class: com.mysql.jdbc.Driver
+        at org.apache.sqoop.manager.SqlManager.makeConnection(SqlManager.java:875)
+        at org.apache.sqoop.manager.GenericJdbcManager.getConnection(GenericJdbcManager.java:59)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:763)
+        at org.apache.sqoop.manager.SqlManager.execute(SqlManager.java:786)
+        at org.apache.sqoop.manager.SqlManager.getColumnInfoForRawQuery(SqlManager.java:289)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypesForRawQuery(SqlManager.java:260)
+        at org.apache.sqoop.manager.SqlManager.getColumnTypes(SqlManager.java:246)
+        at org.apache.sqoop.manager.ConnManager.getColumnTypes(ConnManager.java:327)
+        at org.apache.sqoop.orm.ClassWriter.getColumnTypes(ClassWriter.java:1872)
+        at org.apache.sqoop.orm.ClassWriter.generate(ClassWriter.java:1671)
+        at org.apache.sqoop.tool.CodeGenTool.generateORM(CodeGenTool.java:106)
+        at org.apache.sqoop.tool.ImportTool.importTable(ImportTool.java:501)
+        at org.apache.sqoop.tool.ImportTool.run(ImportTool.java:628)
+        at org.apache.sqoop.Sqoop.run(Sqoop.java:147)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:76)
+        at org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)
+        at org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)
+        at org.apache.sqoop.Sqoop.main(Sqoop.java:252)
+[hadoop@ip-172-31-44-109 ~]$ jps
+10176 DFSAdmin
+5986 Main
+10235 Jps
+18876 StatePusher
+[hadoop@ip-172-31-44-109 ~]$ wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar
+--2022-07-08 10:42:43--  http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar
+Resolving central.maven.org (central.maven.org)... failed: Name or service not known.
+wget: unable to resolve host address ‘central.maven.org’
+[hadoop@ip-172-31-44-109 ~]$ wget http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.30.tar.gz. -O /tmp/mysql-connector.tar.gz
+--2022-07-08 10:46:50--  http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.30.tar.gz.
+Resolving dev.mysql.com (dev.mysql.com)... 137.254.60.11
+Connecting to dev.mysql.com (dev.mysql.com)|137.254.60.11|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.30.tar.gz. [following]
+--2022-07-08 10:46:50--  https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.30.tar.gz.
+Connecting to dev.mysql.com (dev.mysql.com)|137.254.60.11|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2022-07-08 10:46:51 ERROR 404: Not Found.
+
+[hadoop@ip-172-31-44-109 ~]$ yum install mysql-connector-java
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+You need to be root to perform this command.
+[hadoop@ip-172-31-44-109 ~]$ sudo yum install mysql-connector-java
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                    | 3.7 kB  00:00:00
+3 packages excluded due to repository priority protections
+Resolving Dependencies
+--> Running transaction check
+---> Package mysql-connector-java.noarch 1:5.1.25-3.amzn2 will be installed
+--> Processing Dependency: slf4j for package: 1:mysql-connector-java-5.1.25-3.amzn2.noarch
+--> Running transaction check
+---> Package slf4j.noarch 0:1.7.4-4.amzn2 will be installed
+--> Processing Dependency: mvn(javassist:javassist) for package: slf4j-1.7.4-4.amzn2.noarch
+--> Processing Dependency: mvn(commons-lang:commons-lang) for package: slf4j-1.7.4-4.amzn2.noarch
+--> Processing Dependency: mvn(ch.qos.cal10n:cal10n-api) for package: slf4j-1.7.4-4.amzn2.noarch
+--> Running transaction check
+---> Package apache-commons-lang.noarch 0:2.6-15.amzn2 will be installed
+---> Package cal10n.noarch 0:0.7.7-4.amzn2 will be installed
+---> Package javassist.noarch 0:3.16.1-10.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================
+ Package                           Arch                Version                         Repository               Size
+=====================================================================================================================
+Installing:
+ mysql-connector-java              noarch              1:5.1.25-3.amzn2                amzn2-core              1.3 M
+Installing for dependencies:
+ apache-commons-lang               noarch              2.6-15.amzn2                    amzn2-core              276 k
+ cal10n                            noarch              0.7.7-4.amzn2                   amzn2-core               36 k
+ javassist                         noarch              3.16.1-10.amzn2                 amzn2-core              627 k
+ slf4j                             noarch              1.7.4-4.amzn2                   amzn2-core              170 k
+
+Transaction Summary
+=====================================================================================================================
+Install  1 Package (+4 Dependent packages)
+
+Total download size: 2.3 M
+Installed size: 3.3 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/5): cal10n-0.7.7-4.amzn2.noarch.rpm                                                        |  36 kB  00:00:00
+(2/5): apache-commons-lang-2.6-15.amzn2.noarch.rpm                                            | 276 kB  00:00:00
+(3/5): javassist-3.16.1-10.amzn2.noarch.rpm                                                   | 627 kB  00:00:00
+(4/5): mysql-connector-java-5.1.25-3.amzn2.noarch.rpm                                         | 1.3 MB  00:00:00
+(5/5): slf4j-1.7.4-4.amzn2.noarch.rpm                                                         | 170 kB  00:00:00
+---------------------------------------------------------------------------------------------------------------------
+Total                                                                                 14 MB/s | 2.3 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : javassist-3.16.1-10.amzn2.noarch                                                                  1/5
+  Installing : apache-commons-lang-2.6-15.amzn2.noarch                                                           2/5
+  Installing : cal10n-0.7.7-4.amzn2.noarch                                                                       3/5
+  Installing : slf4j-1.7.4-4.amzn2.noarch                                                                        4/5
+  Installing : 1:mysql-connector-java-5.1.25-3.amzn2.noarch                                                      5/5
+  Verifying  : 1:mysql-connector-java-5.1.25-3.amzn2.noarch                                                      1/5
+  Verifying  : slf4j-1.7.4-4.amzn2.noarch                                                                        2/5
+  Verifying  : cal10n-0.7.7-4.amzn2.noarch                                                                       3/5
+  Verifying  : apache-commons-lang-2.6-15.amzn2.noarch                                                           4/5
+  Verifying  : javassist-3.16.1-10.amzn2.noarch                                                                  5/5
+
+Installed:
+  mysql-connector-java.noarch 1:5.1.25-3.amzn2
+
+Dependency Installed:
+  apache-commons-lang.noarch 0:2.6-15.amzn2    cal10n.noarch 0:0.7.7-4.amzn2    javassist.noarch 0:3.16.1-10.amzn2
+  slf4j.noarch 0:1.7.4-4.amzn2
+
+Complete!
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table crm --target-dir /user/hadoop/telco/crm --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 10:48:03 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 10:48:06 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 10:48:06 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 10:48:07 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `crm` AS t LIMIT 1
+22/07/08 10:48:07 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `crm` AS t LIMIT 1
+22/07/08 10:48:07 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-hadoop/compile/43ee8fa51cbea3fc1346d4a3a04c61ba/crm.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+22/07/08 10:48:13 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-hadoop/compile/43ee8fa51cbea3fc1346d4a3a04c61ba/crm.jar
+22/07/08 10:48:13 WARN manager.MySQLManager: It looks like you are importing from mysql.
+22/07/08 10:48:13 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+22/07/08 10:48:13 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+22/07/08 10:48:13 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+22/07/08 10:48:13 INFO mapreduce.ImportJobBase: Beginning import of crm
+22/07/08 10:48:13 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+22/07/08 10:48:14 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+22/07/08 10:48:14 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-44-109.ec2.internal/172.31.44.109:8032
+22/07/08 10:48:14 INFO client.AHSProxy: Connecting to Application History server at ip-172-31-44-109.ec2.internal/172.31.44.109:10200
+22/07/08 10:48:21 INFO db.DBInputFormat: Using read commited transaction isolation
+22/07/08 10:48:21 INFO mapreduce.JobSubmitter: number of splits:1
+22/07/08 10:48:22 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1657263291316_0001
+22/07/08 10:48:22 INFO conf.Configuration: resource-types.xml not found
+22/07/08 10:48:22 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+22/07/08 10:48:22 INFO resource.ResourceUtils: Adding resource type - name = memory-mb, units = Mi, type = COUNTABLE
+22/07/08 10:48:22 INFO resource.ResourceUtils: Adding resource type - name = vcores, units = , type = COUNTABLE
+22/07/08 10:48:23 INFO impl.YarnClientImpl: Submitted application application_1657263291316_0001
+22/07/08 10:48:23 INFO mapreduce.Job: The url to track the job: http://ip-172-31-44-109.ec2.internal:20888/proxy/application_1657263291316_0001/
+22/07/08 10:48:23 INFO mapreduce.Job: Running job: job_1657263291316_0001
+22/07/08 10:48:34 INFO mapreduce.Job: Job job_1657263291316_0001 running in uber mode : false
+22/07/08 10:48:34 INFO mapreduce.Job:  map 0% reduce 0%
+22/07/08 10:49:12 INFO mapreduce.Job:  map 100% reduce 0%
+22/07/08 10:49:13 INFO mapreduce.Job: Job job_1657263291316_0001 completed successfully
+22/07/08 10:49:13 INFO mapreduce.Job: Counters: 30
+        File System Counters
+                FILE: Number of bytes read=0
+                FILE: Number of bytes written=229443
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=87
+                HDFS: Number of bytes written=880087585
+                HDFS: Number of read operations=4
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+        Job Counters
+                Launched map tasks=1
+                Other local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=1714992
+                Total time spent by all reduces in occupied slots (ms)=0
+                Total time spent by all map tasks (ms)=35729
+                Total vcore-milliseconds taken by all map tasks=35729
+                Total megabyte-milliseconds taken by all map tasks=54879744
+        Map-Reduce Framework
+                Map input records=13627493
+                Map output records=13627493
+                Input split bytes=87
+                Spilled Records=0
+                Failed Shuffles=0
+                Merged Map outputs=0
+                GC time elapsed (ms)=317
+                CPU time spent (ms)=30400
+                Physical memory (bytes) snapshot=628076544
+                Virtual memory (bytes) snapshot=3316580352
+                Total committed heap usage (bytes)=506462208
+        File Input Format Counters
+                Bytes Read=0
+        File Output Format Counters
+                Bytes Written=880087585
+22/07/08 10:49:13 INFO mapreduce.ImportJobBase: Transferred 839.3169 MB in 58.7654 seconds (14.2825 MB/sec)
+22/07/08 10:49:13 INFO mapreduce.ImportJobBase: Retrieved 13627493 records.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -ls /user/hadoop/telco/crm
+Found 2 items
+-rw-r--r--   1 hadoop hdfsadmingroup          0 2022-07-08 10:49 /user/hadoop/telco/crm/_SUCCESS
+-rw-r--r--   1 hadoop hdfsadmingroup  880087585 2022-07-08 10:49 /user/hadoop/telco/crm/part-m-00000
+[hadoop@ip-172-31-44-109 ~]$ ^C
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/crm/part-m-* | head
+MALE,Prepaid,aeef4233d9ad34e41f7ecf48d64646f8,ACTIVE,Tier_3,1985
+MALE,Prepaid,2397d009e705bc8a2654cbb3f480cc59,ACTIVE,Tier_3,1958
+MALE,Prepaid,6f05d738919f9283322bae17dc366bf5,ACTIVE,Tier_3,1976
+MALE,Prepaid,45352d9d126f86f40c7eee79a82c833c,ACTIVE,Tier_3,1996
+FEMALE,Prepaid,959b00a279e2785cfa81728338c324f7,ACTIVE,Tier_3,1960
+,Prepaid,b74761390712bde1309ac38b46d59df8,ACTIVE,Tier_3,1994
+Male,Prepaid,b74761390712bde1309ac38b46d59df8,ACTIVE,Tier_3,1994
+Male,Prepaid,1311649d0d7ffeb132cfaf6a0233483e,ACTIVE,Tier_3,1992
+MALE,Prepaid,8e6e340aa4b1a449305da80327f4e6ff,ACTIVE,Tier_3,1963
+Male,Postpaid,fc91bb6f212bf1aca7f30acb5a8f1d16,ACTIVE,Tier_3,1978
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table device --target-dir /user/hadoop/telco/device --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 12:17:54 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 12:17:58 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 12:17:58 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 12:17:59 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `device` AS t LIMIT 1
+22/07/08 12:17:59 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `device` AS t LIMIT 1
+22/07/08 12:17:59 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-hadoop/compile/6c773b0d8f010c87b354c71197ffcce1/device.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+22/07/08 12:18:04 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-hadoop/compile/6c773b0d8f010c87b354c71197ffcce1/device.jar
+22/07/08 12:18:04 WARN manager.MySQLManager: It looks like you are importing from mysql.
+22/07/08 12:18:04 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+22/07/08 12:18:04 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+22/07/08 12:18:04 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+22/07/08 12:18:04 INFO mapreduce.ImportJobBase: Beginning import of device
+22/07/08 12:18:04 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+22/07/08 12:18:05 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+22/07/08 12:18:05 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-44-109.ec2.internal/172.31.44.109:8032
+22/07/08 12:18:06 INFO client.AHSProxy: Connecting to Application History server at ip-172-31-44-109.ec2.internal/172.31.44.109:10200
+22/07/08 12:18:09 INFO db.DBInputFormat: Using read commited transaction isolation
+22/07/08 12:18:09 INFO mapreduce.JobSubmitter: number of splits:1
+22/07/08 12:18:10 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1657263291316_0002
+22/07/08 12:18:10 INFO conf.Configuration: resource-types.xml not found
+22/07/08 12:18:10 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+22/07/08 12:18:10 INFO resource.ResourceUtils: Adding resource type - name = memory-mb, units = Mi, type = COUNTABLE
+22/07/08 12:18:10 INFO resource.ResourceUtils: Adding resource type - name = vcores, units = , type = COUNTABLE
+22/07/08 12:18:10 INFO impl.YarnClientImpl: Submitted application application_1657263291316_0002
+22/07/08 12:18:10 INFO mapreduce.Job: The url to track the job: http://ip-172-31-44-109.ec2.internal:20888/proxy/application_1657263291316_0002/
+22/07/08 12:18:10 INFO mapreduce.Job: Running job: job_1657263291316_0002
+22/07/08 12:18:19 INFO mapreduce.Job: Job job_1657263291316_0002 running in uber mode : false
+22/07/08 12:18:19 INFO mapreduce.Job:  map 0% reduce 0%
+22/07/08 12:18:34 INFO mapreduce.Job:  map 100% reduce 0%
+22/07/08 12:18:35 INFO mapreduce.Job: Job job_1657263291316_0002 completed successfully
+22/07/08 12:18:35 INFO mapreduce.Job: Counters: 30
+        File System Counters
+                FILE: Number of bytes read=0
+                FILE: Number of bytes written=229443
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=87
+                HDFS: Number of bytes written=241747809
+                HDFS: Number of read operations=4
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+        Job Counters
+                Launched map tasks=1
+                Other local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=602448
+                Total time spent by all reduces in occupied slots (ms)=0
+                Total time spent by all map tasks (ms)=12551
+                Total vcore-milliseconds taken by all map tasks=12551
+                Total megabyte-milliseconds taken by all map tasks=19278336
+        Map-Reduce Framework
+                Map input records=2440100
+                Map output records=2440100
+                Input split bytes=87
+                Spilled Records=0
+                Failed Shuffles=0
+                Merged Map outputs=0
+                GC time elapsed (ms)=180
+                CPU time spent (ms)=10760
+                Physical memory (bytes) snapshot=603615232
+                Virtual memory (bytes) snapshot=3320569856
+                Total committed heap usage (bytes)=492306432
+        File Input Format Counters
+                Bytes Read=0
+        File Output Format Counters
+                Bytes Written=241747809
+22/07/08 12:18:35 INFO mapreduce.ImportJobBase: Transferred 230.5487 MB in 29.4091 seconds (7.8394 MB/sec)
+22/07/08 12:18:35 INFO mapreduce.ImportJobBase: Retrieved 2440100 records.
+[hadoop@ip-172-31-44-109 ~]$ sqoop import --connect jdbc:mysql://mastersurya.cprwunnww5yl.us-east-1.rds.amazonaws.com:3306/telco --table revenue --target-dir /user/hadoop/telco/revenue/ --username mastersurya -P -m 1
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/lib/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/lib/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+22/07/08 12:19:46 INFO sqoop.Sqoop: Running Sqoop version: 1.4.7
+Enter password:
+22/07/08 12:19:50 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+22/07/08 12:19:50 INFO tool.CodeGenTool: Beginning code generation
+22/07/08 12:19:50 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `revenue` AS t LIMIT 1
+22/07/08 12:19:50 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `revenue` AS t LIMIT 1
+22/07/08 12:19:50 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-hadoop/compile/3746724abdd526dbdf44a0abbe1b4f86/revenue.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+22/07/08 12:19:55 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-hadoop/compile/3746724abdd526dbdf44a0abbe1b4f86/revenue.jar
+22/07/08 12:19:55 WARN manager.MySQLManager: It looks like you are importing from mysql.
+22/07/08 12:19:55 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+22/07/08 12:19:55 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+22/07/08 12:19:55 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+22/07/08 12:19:55 INFO mapreduce.ImportJobBase: Beginning import of revenue
+22/07/08 12:19:55 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+22/07/08 12:19:56 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+22/07/08 12:19:57 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-44-109.ec2.internal/172.31.44.109:8032
+22/07/08 12:19:57 INFO client.AHSProxy: Connecting to Application History server at ip-172-31-44-109.ec2.internal/172.31.44.109:10200
+22/07/08 12:20:00 INFO db.DBInputFormat: Using read commited transaction isolation
+22/07/08 12:20:00 INFO mapreduce.JobSubmitter: number of splits:1
+22/07/08 12:20:01 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1657263291316_0003
+22/07/08 12:20:01 INFO conf.Configuration: resource-types.xml not found
+22/07/08 12:20:01 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+22/07/08 12:20:01 INFO resource.ResourceUtils: Adding resource type - name = memory-mb, units = Mi, type = COUNTABLE
+22/07/08 12:20:01 INFO resource.ResourceUtils: Adding resource type - name = vcores, units = , type = COUNTABLE
+22/07/08 12:20:02 INFO impl.YarnClientImpl: Submitted application application_1657263291316_0003
+22/07/08 12:20:02 INFO mapreduce.Job: The url to track the job: http://ip-172-31-44-109.ec2.internal:20888/proxy/application_1657263291316_0003/
+22/07/08 12:20:02 INFO mapreduce.Job: Running job: job_1657263291316_0003
+22/07/08 12:20:11 INFO mapreduce.Job: Job job_1657263291316_0003 running in uber mode : false
+22/07/08 12:20:11 INFO mapreduce.Job:  map 0% reduce 0%
+22/07/08 12:20:23 INFO mapreduce.Job:  map 100% reduce 0%
+22/07/08 12:20:24 INFO mapreduce.Job: Job job_1657263291316_0003 completed successfully
+22/07/08 12:20:24 INFO mapreduce.Job: Counters: 30
+        File System Counters
+                FILE: Number of bytes read=0
+                FILE: Number of bytes written=229415
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=87
+                HDFS: Number of bytes written=74838667
+                HDFS: Number of read operations=4
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+        Job Counters
+                Launched map tasks=1
+                Other local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=482496
+                Total time spent by all reduces in occupied slots (ms)=0
+                Total time spent by all map tasks (ms)=10052
+                Total vcore-milliseconds taken by all map tasks=10052
+                Total megabyte-milliseconds taken by all map tasks=15439872
+        Map-Reduce Framework
+                Map input records=1704601
+                Map output records=1704601
+                Input split bytes=87
+                Spilled Records=0
+                Failed Shuffles=0
+                Merged Map outputs=0
+                GC time elapsed (ms)=201
+                CPU time spent (ms)=7440
+                Physical memory (bytes) snapshot=584749056
+                Virtual memory (bytes) snapshot=3301474304
+                Total committed heap usage (bytes)=493355008
+        File Input Format Counters
+                Bytes Read=0
+        File Output Format Counters
+                Bytes Written=74838667
+22/07/08 12:20:24 INFO mapreduce.ImportJobBase: Transferred 71.3717 MB in 27.6215 seconds (2.5839 MB/sec)
+22/07/08 12:20:24 INFO mapreduce.ImportJobBase: Retrieved 1704601 records.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/devices/* | head
+cat: `/user/hadoop/telco/devices/*': No such file or directory
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/device/* | head
+SAMSUNG,7ce90a5469d6a07dc8c770956cc29482,GALAXY J1 ACE (SM-J111F),c0e80ecc67484f293db0cf723146c9d6,Android,Google
+WALTON,110f73736e1e1fe0ef5cb8a581bc0ec2,OLVIO L22,2bce0cd398cbc9b2478ecaf1ef62b2c1,,
+LG,ddf90b7c597d7714637ecde342a8c609,W1500,d7b8b49fafb853a3aef0c20d49bca845,LG OS,LG
+SYMPHONY,c395eac49569e6741faf98284aef725c,B13,d628f3b548dc74c5fde92323c61c819e,,
+SAMSUNG,395b163b071e5880e66ac57c5768673e,METRO SM-B350ED,e33e767a53a8dceadebc3354221bbf6a,Samsung OS,Samsung
+HIMAX,d64cd8af0738cb79bbe21da1558201fc,"H20,72f78dc2ae7857045b4551483b75858b, H21, H111
+SAMSUNG,0b3697b11e5ebf9e71988274e12f8ba0,GALAXY ACE NXT (SM-G313HU),dac6fe711e7f592b4c695175be5a552b,Android,Google
+SAMSUNG,37efb3b8fbe269d7a3c62001c7e45fc5,GURU MUSIC II (SM-B310E),13aa941a42ab4c29d598a0c4fe1a981b,Samsung OS,Samsung
+ITEL,a214f011d36d222d6930629d0306198b,IT5231,8ed54c77279bfe313842edab355d68f6,,
+NOKIA,8a0150c6a9e697d20454931f423b29b0,3 DS (TA-1032),b15e7a71a459ba9a48ef6526c820706d,Android,Google
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/device | head
+cat: `/user/hadoop/telco/device': Is a directory
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/revenue/* | head
+66e94d24d8e0d5776a8a6b694782eff0,20.2656,26
+66e94d24d8e0d5776a8a6b694782eff0,5.36116,34
+66e94d24d8e0d5776a8a6b694782eff0,18.1813,31
+66e94d24d8e0d5776a8a6b694782eff0,16.8574,35
+66e94d24d8e0d5776a8a6b694782eff0,14.3923,24
+66e94d24d8e0d5776a8a6b694782eff0,1.88985,22
+66e94d24d8e0d5776a8a6b694782eff0,17.4571,27
+66e94d24d8e0d5776a8a6b694782eff0,16.2999,28
+66e94d24d8e0d5776a8a6b694782eff0,19.3581,29
+9f66945ccec02b2e7ff2de0e22b38b7a,13.3784,34
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/revenue/* | head                                      66e94d24d8e0d5776a8a6b694782eff0,20.2656,26
+66e94d24d8e0d5776a8a6b694782eff0,5.36116,34
+66e94d24d8e0d5776a8a6b694782eff0,18.1813,31
+66e94d24d8e0d5776a8a6b694782eff0,16.8574,35
+66e94d24d8e0d5776a8a6b694782eff0,14.3923,24
+66e94d24d8e0d5776a8a6b694782eff0,1.88985,22
+66e94d24d8e0d5776a8a6b694782eff0,17.4571,27
+66e94d24d8e0d5776a8a6b694782eff0,16.2999,28
+66e94d24d8e0d5776a8a6b694782eff0,19.3581,29
+9f66945ccec02b2e7ff2de0e22b38b7a,13.3784,34
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/revenue | head
+cat: `/user/hadoop/telco/revenue': Is a directory
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/device/ | head
+cat: `/user/hadoop/telco/device': Is a directory
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/device/* | head
+SAMSUNG,7ce90a5469d6a07dc8c770956cc29482,GALAXY J1 ACE (SM-J111F),c0e80ecc67484f293db0cf723146c9d6,Android,Google
+WALTON,110f73736e1e1fe0ef5cb8a581bc0ec2,OLVIO L22,2bce0cd398cbc9b2478ecaf1ef62b2c1,,
+LG,ddf90b7c597d7714637ecde342a8c609,W1500,d7b8b49fafb853a3aef0c20d49bca845,LG OS,LG
+SYMPHONY,c395eac49569e6741faf98284aef725c,B13,d628f3b548dc74c5fde92323c61c819e,,
+SAMSUNG,395b163b071e5880e66ac57c5768673e,METRO SM-B350ED,e33e767a53a8dceadebc3354221bbf6a,Samsung OS,Samsung
+HIMAX,d64cd8af0738cb79bbe21da1558201fc,"H20,72f78dc2ae7857045b4551483b75858b, H21, H111
+SAMSUNG,0b3697b11e5ebf9e71988274e12f8ba0,GALAXY ACE NXT (SM-G313HU),dac6fe711e7f592b4c695175be5a552b,Android,Google
+SAMSUNG,37efb3b8fbe269d7a3c62001c7e45fc5,GURU MUSIC II (SM-B310E),13aa941a42ab4c29d598a0c4fe1a981b,Samsung OS,Samsung
+ITEL,a214f011d36d222d6930629d0306198b,IT5231,8ed54c77279bfe313842edab355d68f6,,
+NOKIA,8a0150c6a9e697d20454931f423b29b0,3 DS (TA-1032),b15e7a71a459ba9a48ef6526c820706d,Android,Google
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/device/* | head
+SAMSUNG,7ce90a5469d6a07dc8c770956cc29482,GALAXY J1 ACE (SM-J111F),c0e80ecc67484f293db0cf723146c9d6,Android,Google
+WALTON,110f73736e1e1fe0ef5cb8a581bc0ec2,OLVIO L22,2bce0cd398cbc9b2478ecaf1ef62b2c1,,
+LG,ddf90b7c597d7714637ecde342a8c609,W1500,d7b8b49fafb853a3aef0c20d49bca845,LG OS,LG
+SYMPHONY,c395eac49569e6741faf98284aef725c,B13,d628f3b548dc74c5fde92323c61c819e,,
+SAMSUNG,395b163b071e5880e66ac57c5768673e,METRO SM-B350ED,e33e767a53a8dceadebc3354221bbf6a,Samsung OS,Samsung
+HIMAX,d64cd8af0738cb79bbe21da1558201fc,"H20,72f78dc2ae7857045b4551483b75858b, H21, H111
+SAMSUNG,0b3697b11e5ebf9e71988274e12f8ba0,GALAXY ACE NXT (SM-G313HU),dac6fe711e7f592b4c695175be5a552b,Android,Google
+SAMSUNG,37efb3b8fbe269d7a3c62001c7e45fc5,GURU MUSIC II (SM-B310E),13aa941a42ab4c29d598a0c4fe1a981b,Samsung OS,Samsung
+ITEL,a214f011d36d222d6930629d0306198b,IT5231,8ed54c77279bfe313842edab355d68f6,,
+NOKIA,8a0150c6a9e697d20454931f423b29b0,3 DS (TA-1032),b15e7a71a459ba9a48ef6526c820706d,Android,Google
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -cat /user/hadoop/telco/revenue/* | head
+66e94d24d8e0d5776a8a6b694782eff0,20.2656,26
+66e94d24d8e0d5776a8a6b694782eff0,5.36116,34
+66e94d24d8e0d5776a8a6b694782eff0,18.1813,31
+66e94d24d8e0d5776a8a6b694782eff0,16.8574,35
+66e94d24d8e0d5776a8a6b694782eff0,14.3923,24
+66e94d24d8e0d5776a8a6b694782eff0,1.88985,22
+66e94d24d8e0d5776a8a6b694782eff0,17.4571,27
+66e94d24d8e0d5776a8a6b694782eff0,16.2999,28
+66e94d24d8e0d5776a8a6b694782eff0,19.3581,29
+9f66945ccec02b2e7ff2de0e22b38b7a,13.3784,34
+cat: Unable to write to output stream.
+[hadoop@ip-172-31-44-109 ~]$ hadoop fs -ls /user/hadoop/telco
+Found 3 items
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 10:49 /user/hadoop/telco/crm
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 12:18 /user/hadoop/telco/device
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 12:20 /user/hadoop/telco/revenue
+[hadoop@ip-172-31-44-109 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> show databases;
+OK
+default
+Time taken: 1.159 seconds, Fetched: 1 row(s)
+hive> use default;
+OK
+Time taken: 0.186 seconds
+hive> exit;
+[hadoop@ip-172-31-44-109 ~]$ beeline -u jdbc:hive2://localhost:10000/default -n hadoop
+Connecting to jdbc:hive2://localhost:10000/default
+Connected to: Apache Hive (version 2.3.9-amzn-2)
+Driver: Hive JDBC (version 2.3.9-amzn-2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 2.3.9-amzn-2 by Apache Hive
+0: jdbc:hive2://localhost:10000/default> show databases;
+INFO  : Compiling command(queryId=hive_20220708154834_8ace0118-7449-480f-a4fc-0c609596ab48): show databases
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:database_name, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708154834_8ace0118-7449-480f-a4fc-0c609596ab48 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Show Databases Operator:
+        Show Databases
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-48-34_450_8423413055099531192-1/-local-10000
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708154834_8ace0118-7449-480f-a4fc-0c609596ab48); Time taken: 1.774 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708154834_8ace0118-7449-480f-a4fc-0c609596ab48): show databases
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708154834_8ace0118-7449-480f-a4fc-0c609596ab48); Time taken: 0.038 seconds
+INFO  : OK
++----------------+
+| database_name  |
++----------------+
+| default        |
++----------------+
+1 row selected (2.576 seconds)
+0: jdbc:hive2://localhost:10000/default> create database telco_db;
+INFO  : Compiling command(queryId=hive_20220708154856_0b799382-7ee1-4c8f-9372-67b1aeeff97d): create database telco_db
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708154856_0b799382-7ee1-4c8f-9372-67b1aeeff97d : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+
+STAGE PLANS:
+  Stage: Stage-0
+
+
+INFO  : Completed compiling command(queryId=hive_20220708154856_0b799382-7ee1-4c8f-9372-67b1aeeff97d); Time taken: 0.028 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708154856_0b799382-7ee1-4c8f-9372-67b1aeeff97d): create database telco_db
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708154856_0b799382-7ee1-4c8f-9372-67b1aeeff97d); Time taken: 0.516 seconds
+INFO  : OK
+No rows affected (0.575 seconds)
+0: jdbc:hive2://localhost:10000/default> show databases;
+INFO  : Compiling command(queryId=hive_20220708154905_d4945217-394d-493b-985c-335f16a6b31a): show databases
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:database_name, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708154905_d4945217-394d-493b-985c-335f16a6b31a : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Show Databases Operator:
+        Show Databases
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-49-05_391_5416671137817959160-1/-local-10000
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708154905_d4945217-394d-493b-985c-335f16a6b31a); Time taken: 0.025 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708154905_d4945217-394d-493b-985c-335f16a6b31a): show databases
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708154905_d4945217-394d-493b-985c-335f16a6b31a); Time taken: 0.011 seconds
+INFO  : OK
++----------------+
+| database_name  |
++----------------+
+| default        |
+| telco_db       |
++----------------+
+2 rows selected (0.079 seconds)
+0: jdbc:hive2://localhost:10000/default> use telco_db;
+INFO  : Compiling command(queryId=hive_20220708154911_ad4ad30d-bd34-4a01-91b7-1af9da0d84cf): use telco_db
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708154911_ad4ad30d-bd34-4a01-91b7-1af9da0d84cf : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+
+STAGE PLANS:
+  Stage: Stage-0
+
+
+INFO  : Completed compiling command(queryId=hive_20220708154911_ad4ad30d-bd34-4a01-91b7-1af9da0d84cf); Time taken: 0.024 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708154911_ad4ad30d-bd34-4a01-91b7-1af9da0d84cf): use telco_db
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708154911_ad4ad30d-bd34-4a01-91b7-1af9da0d84cf); Time taken: 0.013 seconds
+INFO  : OK
+No rows affected (0.062 seconds)
+0: jdbc:hive2://localhost:10000/default> show tables;
+INFO  : Compiling command(queryId=hive_20220708154919_4f5308be-60f4-4e8b-9841-1070b3bbd0d0): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708154919_4f5308be-60f4-4e8b-9841-1070b3bbd0d0 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Show Table Operator:
+        Show Tables
+          database name: telco_db
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-49-19_197_372102381658581083-1/-local-10000
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708154919_4f5308be-60f4-4e8b-9841-1070b3bbd0d0); Time taken: 0.026 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708154919_4f5308be-60f4-4e8b-9841-1070b3bbd0d0): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708154919_4f5308be-60f4-4e8b-9841-1070b3bbd0d0); Time taken: 0.02 seconds
+INFO  : OK
++-----------+
+| tab_name  |
++-----------+
++-----------+
+No rows selected (0.068 seconds)
+0: jdbc:hive2://localhost:10000/default> create table crm_stg
+. . . . . . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . . . . . .> msisdn string,
+. . . . . . . . . . . . . . . . . . . .> gender string,
+. . . . . . . . . . . . . . . . . . . .> year_of_birth int,
+. . . . . . . . . . . . . . . . . . . .> system_status string,
+. . . . . . . . . . . . . . . . . . . .> mobile_type string,
+. . . . . . . . . . . . . . . . . . . .> value_segment string) row format delimited fields terminated by ',' lines terminated by '\n';
+INFO  : Compiling command(queryId=hive_20220708155025_1ab7e6ee-8072-487a-ad6f-3e74066cb177): create table crm_stg
+(
+msisdn string,
+gender string,
+year_of_birth int,
+system_status string,
+mobile_type string,
+value_segment string) row format delimited fields terminated by ',' lines terminated by '\n'
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155025_1ab7e6ee-8072-487a-ad6f-3e74066cb177 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Create Table Operator:
+        Create Table
+          columns: msisdn string, gender string, year_of_birth int, system_status string, mobile_type string, value_segment string
+          field delimiter: ,
+          input format: org.apache.hadoop.mapred.TextInputFormat
+          line delimiter:
+
+          output format: org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat
+          serde name: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+          name: telco_db.crm_stg
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155025_1ab7e6ee-8072-487a-ad6f-3e74066cb177); Time taken: 0.1 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155025_1ab7e6ee-8072-487a-ad6f-3e74066cb177): create table crm_stg
+(
+msisdn string,
+gender string,
+year_of_birth int,
+system_status string,
+mobile_type string,
+value_segment string) row format delimited fields terminated by ',' lines terminated by '\n'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155025_1ab7e6ee-8072-487a-ad6f-3e74066cb177); Time taken: 0.756 seconds
+INFO  : OK
+No rows affected (0.872 seconds)
+0: jdbc:hive2://localhost:10000/default> show tables;
+INFO  : Compiling command(queryId=hive_20220708155031_eda78802-e4dd-4c06-bdfe-43a0dccff3fe): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155031_eda78802-e4dd-4c06-bdfe-43a0dccff3fe : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Show Table Operator:
+        Show Tables
+          database name: telco_db
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-50-31_733_3583448831108669193-1/-local-10000
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155031_eda78802-e4dd-4c06-bdfe-43a0dccff3fe); Time taken: 0.025 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155031_eda78802-e4dd-4c06-bdfe-43a0dccff3fe): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155031_eda78802-e4dd-4c06-bdfe-43a0dccff3fe); Time taken: 0.026 seconds
+INFO  : OK
++-----------+
+| tab_name  |
++-----------+
+| crm_stg   |
++-----------+
+1 row selected (0.08 seconds)
+0: jdbc:hive2://localhost:10000/default> select * from crm_stg;
+INFO  : Compiling command(queryId=hive_20220708155052_c234fe94-2bd9-499f-a785-716d407890a8): select * from crm_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:crm_stg.msisdn, type:string, comment:null), FieldSchema(name:crm_stg.gender, type:string, comment:null), FieldSchema(name:crm_stg.year_of_birth, type:int, comment:null), FieldSchema(name:crm_stg.system_status, type:string, comment:null), FieldSchema(name:crm_stg.mobile_type, type:string, comment:null), FieldSchema(name:crm_stg.value_segment, type:string, comment:null)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155052_c234fe94-2bd9-499f-a785-716d407890a8 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        TableScan
+          alias: crm_stg
+          GatherStats: false
+          Select Operator
+            expressions: msisdn (type: string), gender (type: string), year_of_birth (type: int), system_status (type: string), mobile_type (type: string), value_segment (type: string)
+            outputColumnNames: _col0, _col1, _col2, _col3, _col4, _col5
+            ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155052_c234fe94-2bd9-499f-a785-716d407890a8); Time taken: 3.039 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155052_c234fe94-2bd9-499f-a785-716d407890a8): select * from crm_stg
+INFO  : Completed executing command(queryId=hive_20220708155052_c234fe94-2bd9-499f-a785-716d407890a8); Time taken: 0.003 seconds
+INFO  : OK
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
+| crm_stg.msisdn  | crm_stg.gender  | crm_stg.year_of_birth  | crm_stg.system_status  | crm_stg.mobile_type  | crm_stg.value_segment  |
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
+No rows selected (3.084 seconds)
+0: jdbc:hive2://localhost:10000/default> create table device_stg
+. . . . . . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . . . . . .> msisdn string,
+. . . . . . . . . . . . . . . . . . . .> imei_tac string,
+. . . . . . . . . . . . . . . . . . . .> brand_name string,
+. . . . . . . . . . . . . . . . . . . .> model_name string,
+. . . . . . . . . . . . . . . . . . . .> os_name string,
+. . . . . . . . . . . . . . . . . . . .> os_vendor string
+. . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . .> LINES TERMINATED BY '\n';
+INFO  : Compiling command(queryId=hive_20220708155126_c776ab7a-53b4-447b-b864-abc7cfb61393): create table device_stg
+(
+msisdn string,
+imei_tac string,
+brand_name string,
+model_name string,
+os_name string,
+os_vendor string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155126_c776ab7a-53b4-447b-b864-abc7cfb61393 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Create Table Operator:
+        Create Table
+          columns: msisdn string, imei_tac string, brand_name string, model_name string, os_name string, os_vendor string
+          field delimiter: ,
+          input format: org.apache.hadoop.mapred.TextInputFormat
+          line delimiter:
+
+          output format: org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat
+          serde name: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+          name: telco_db.device_stg
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155126_c776ab7a-53b4-447b-b864-abc7cfb61393); Time taken: 0.077 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155126_c776ab7a-53b4-447b-b864-abc7cfb61393): create table device_stg
+(
+msisdn string,
+imei_tac string,
+brand_name string,
+model_name string,
+os_name string,
+os_vendor string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155126_c776ab7a-53b4-447b-b864-abc7cfb61393); Time taken: 0.17 seconds
+INFO  : OK
+No rows affected (0.272 seconds)
+0: jdbc:hive2://localhost:10000/default> create table revenue_stg
+. . . . . . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . . . . . .> msisdn string,
+. . . . . . . . . . . . . . . . . . . .> Week_number int,
+. . . . . . . . . . . . . . . . . . . .> revenue_usd float
+. . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . .> LINES TERMINATED BY '\n';
+INFO  : Compiling command(queryId=hive_20220708155136_05ca1862-f584-4465-92b8-e47ec3760477): create table revenue_stg
+(
+msisdn string,
+Week_number int,
+revenue_usd float
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155136_05ca1862-f584-4465-92b8-e47ec3760477 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Create Table Operator:
+        Create Table
+          columns: msisdn string, week_number int, revenue_usd float
+          field delimiter: ,
+          input format: org.apache.hadoop.mapred.TextInputFormat
+          line delimiter:
+
+          output format: org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat
+          serde name: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+          name: telco_db.revenue_stg
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155136_05ca1862-f584-4465-92b8-e47ec3760477); Time taken: 0.037 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155136_05ca1862-f584-4465-92b8-e47ec3760477): create table revenue_stg
+(
+msisdn string,
+Week_number int,
+revenue_usd float
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155136_05ca1862-f584-4465-92b8-e47ec3760477); Time taken: 0.063 seconds
+INFO  : OK
+No rows affected (0.118 seconds)
+0: jdbc:hive2://localhost:10000/default> show tables;
+INFO  : Compiling command(queryId=hive_20220708155142_317562ef-462f-462d-adfe-2ec2984796ce): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155142_317562ef-462f-462d-adfe-2ec2984796ce : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Show Table Operator:
+        Show Tables
+          database name: telco_db
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-51-42_236_4029624062666795388-1/-local-10000
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155142_317562ef-462f-462d-adfe-2ec2984796ce); Time taken: 0.025 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155142_317562ef-462f-462d-adfe-2ec2984796ce): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155142_317562ef-462f-462d-adfe-2ec2984796ce); Time taken: 0.015 seconds
+INFO  : OK
++--------------+
+|   tab_name   |
++--------------+
+| crm_stg      |
+| device_stg   |
+| revenue_stg  |
++--------------+
+3 rows selected (0.068 seconds)
+0: jdbc:hive2://localhost:10000/default> select * from revenue_stg;
+INFO  : Compiling command(queryId=hive_20220708155149_e73132d3-0fcc-4e9e-b144-6a07cb3e5b1e): select * from revenue_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:revenue_stg.msisdn, type:string, comment:null), FieldSchema(name:revenue_stg.week_number, type:int, comment:null), FieldSchema(name:revenue_stg.revenue_usd, type:float, comment:null)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155149_e73132d3-0fcc-4e9e-b144-6a07cb3e5b1e : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        TableScan
+          alias: revenue_stg
+          GatherStats: false
+          Select Operator
+            expressions: msisdn (type: string), week_number (type: int), revenue_usd (type: float)
+            outputColumnNames: _col0, _col1, _col2
+            ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155149_e73132d3-0fcc-4e9e-b144-6a07cb3e5b1e); Time taken: 0.275 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155149_e73132d3-0fcc-4e9e-b144-6a07cb3e5b1e): select * from revenue_stg
+INFO  : Completed executing command(queryId=hive_20220708155149_e73132d3-0fcc-4e9e-b144-6a07cb3e5b1e); Time taken: 0.002 seconds
+INFO  : OK
++---------------------+--------------------------+--------------------------+
+| revenue_stg.msisdn  | revenue_stg.week_number  | revenue_stg.revenue_usd  |
++---------------------+--------------------------+--------------------------+
++---------------------+--------------------------+--------------------------+
+No rows selected (0.338 seconds)
+0: jdbc:hive2://localhost:10000/default> load data inpath '/user/hadoop/telco/crm' into table crm_stg;
+INFO  : Compiling command(queryId=hive_20220708155234_f177ef89-2644-42bd-af73-00a930c3d430): load data inpath '/user/hadoop/telco/crm' into table crm_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155234_f177ef89-2644-42bd-af73-00a930c3d430 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [MOVE]
+  Stage-1 depends on stages: Stage-0 [STATS]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Move Operator
+      tables:
+          replace: false
+          source: hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/crm
+          table:
+              input format: org.apache.hadoop.mapred.TextInputFormat
+              output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+              properties:
+                COLUMN_STATS_ACCURATE {"BASIC_STATS":"true"}
+                bucket_count -1
+                column.name.delimiter ,
+                columns msisdn,gender,year_of_birth,system_status,mobile_type,value_segment
+                columns.comments
+                columns.types string:string:int:string:string:string
+                field.delim ,
+                file.inputformat org.apache.hadoop.mapred.TextInputFormat
+                file.outputformat org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+                line.delim
+
+                location hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/warehouse/telco_db.db/crm_stg
+                name telco_db.crm_stg
+                numFiles 0
+                numRows 0
+                rawDataSize 0
+                serialization.ddl struct crm_stg { string msisdn, string gender, i32 year_of_birth, string system_status, string mobile_type, string value_segment}
+                serialization.format ,
+                serialization.lib org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+                totalSize 0
+                transient_lastDdlTime 1657295426
+              serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+              name: telco_db.crm_stg
+
+  Stage: Stage-1
+    Stats-Aggr Operator
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155234_f177ef89-2644-42bd-af73-00a930c3d430); Time taken: 0.261 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155234_f177ef89-2644-42bd-af73-00a930c3d430): load data inpath '/user/hadoop/telco/crm' into table crm_stg
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table telco_db.crm_stg from hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/crm
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155234_f177ef89-2644-42bd-af73-00a930c3d430); Time taken: 1.02 seconds
+INFO  : OK
+No rows affected (1.293 seconds)
+0: jdbc:hive2://localhost:10000/default> describe crm_stg;
+INFO  : Compiling command(queryId=hive_20220708155342_75965014-f0d7-44f2-be6b-7bf4f946e4af): describe crm_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:col_name, type:string, comment:from deserializer), FieldSchema(name:data_type, type:string, comment:from deserializer), FieldSchema(name:comment, type:string, comment:from deserializer)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155342_75965014-f0d7-44f2-be6b-7bf4f946e4af : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [DDL]
+  Stage-1 depends on stages: Stage-0 [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+      Describe Table Operator:
+        Describe Table
+          result file: file:/mnt/tmp/hive/301e4391-741f-4d21-8ea7-2e8a7b3161b7/hive_2022-07-08_15-53-42_827_7395763782725981198-1/-local-10000
+          table: crm_stg
+
+  Stage: Stage-1
+    Fetch Operator
+      limit: -1
+      Processor Tree:
+        ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155342_75965014-f0d7-44f2-be6b-7bf4f946e4af); Time taken: 0.331 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155342_75965014-f0d7-44f2-be6b-7bf4f946e4af): describe crm_stg
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155342_75965014-f0d7-44f2-be6b-7bf4f946e4af); Time taken: 0.041 seconds
+INFO  : OK
++----------------+------------+----------+
+|    col_name    | data_type  | comment  |
++----------------+------------+----------+
+| msisdn         | string     |          |
+| gender         | string     |          |
+| year_of_birth  | int        |          |
+| system_status  | string     |          |
+| mobile_type    | string     |          |
+| value_segment  | string     |          |
++----------------+------------+----------+
+6 rows selected (0.423 seconds)
+0: jdbc:hive2://localhost:10000/default> select * from crm_stg limit 5;
+INFO  : Compiling command(queryId=hive_20220708155414_be637c45-a577-4f42-93ff-5c73cb36ae27): select * from crm_stg limit 5
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:crm_stg.msisdn, type:string, comment:null), FieldSchema(name:crm_stg.gender, type:string, comment:null), FieldSchema(name:crm_stg.year_of_birth, type:int, comment:null), FieldSchema(name:crm_stg.system_status, type:string, comment:null), FieldSchema(name:crm_stg.mobile_type, type:string, comment:null), FieldSchema(name:crm_stg.value_segment, type:string, comment:null)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155414_be637c45-a577-4f42-93ff-5c73cb36ae27 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: 5
+      Processor Tree:
+        TableScan
+          alias: crm_stg
+          GatherStats: false
+          Select Operator
+            expressions: msisdn (type: string), gender (type: string), year_of_birth (type: int), system_status (type: string), mobile_type (type: string), value_segment (type: string)
+            outputColumnNames: _col0, _col1, _col2, _col3, _col4, _col5
+            Limit
+              Number of rows: 5
+              ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155414_be637c45-a577-4f42-93ff-5c73cb36ae27); Time taken: 1.795 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155414_be637c45-a577-4f42-93ff-5c73cb36ae27): select * from crm_stg limit 5
+INFO  : Completed executing command(queryId=hive_20220708155414_be637c45-a577-4f42-93ff-5c73cb36ae27); Time taken: 0.002 seconds
+INFO  : OK
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
+| crm_stg.msisdn  | crm_stg.gender  | crm_stg.year_of_birth  | crm_stg.system_status  | crm_stg.mobile_type  | crm_stg.value_segment  |
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
+| MALE            | Prepaid         | NULL                   | ACTIVE                 | Tier_3               | 1985                   |
+| MALE            | Prepaid         | NULL                   | ACTIVE                 | Tier_3               | 1958                   |
+| MALE            | Prepaid         | NULL                   | ACTIVE                 | Tier_3               | 1976                   |
+| MALE            | Prepaid         | NULL                   | ACTIVE                 | Tier_3               | 1996                   |
+| FEMALE          | Prepaid         | NULL                   | ACTIVE                 | Tier_3               | 1960                   |
++-----------------+-----------------+------------------------+------------------------+----------------------+------------------------+
+5 rows selected (1.962 seconds)
+0: jdbc:hive2://localhost:10000/default> load data inpath 'user/hadoop/telco/device' into table device_stg;
+Error: Error while compiling statement: FAILED: SemanticException Line 1:17 Invalid path ''user/hadoop/telco/device'': No files matching path hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/user/hadoop/telco/device (state=42000,code=40000)
+0: jdbc:hive2://localhost:10000/default> load data inpath 'user/hadoop/telco/device/' into table device_stg;
+Error: Error while compiling statement: FAILED: SemanticException Line 1:17 Invalid path ''user/hadoop/telco/device/'': No files matching path hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/user/hadoop/telco/device (state=42000,code=40000)
+0: jdbc:hive2://localhost:10000/default> load data inpath 'user/hadoop/telco/device' into table device_stg;
+Error: Error while compiling statement: FAILED: SemanticException Line 1:17 Invalid path ''user/hadoop/telco/device'': No files matching path hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/user/hadoop/telco/device (state=42000,code=40000)
+0: jdbc:hive2://localhost:10000/default> load data inpath '/user/hadoop/telco/revenue' into table revenue_stg;
+INFO  : Compiling command(queryId=hive_20220708155625_45840053-c804-4c1b-8f85-233a93b44d41): load data inpath '/user/hadoop/telco/revenue' into table revenue_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155625_45840053-c804-4c1b-8f85-233a93b44d41 : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [MOVE]
+  Stage-1 depends on stages: Stage-0 [STATS]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Move Operator
+      tables:
+          replace: false
+          source: hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/revenue
+          table:
+              input format: org.apache.hadoop.mapred.TextInputFormat
+              output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+              properties:
+                COLUMN_STATS_ACCURATE {"BASIC_STATS":"true"}
+                bucket_count -1
+                column.name.delimiter ,
+                columns msisdn,week_number,revenue_usd
+                columns.comments
+                columns.types string:int:float
+                field.delim ,
+                file.inputformat org.apache.hadoop.mapred.TextInputFormat
+                file.outputformat org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+                line.delim
+
+                location hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/warehouse/telco_db.db/revenue_stg
+                name telco_db.revenue_stg
+                numFiles 0
+                numRows 0
+                rawDataSize 0
+                serialization.ddl struct revenue_stg { string msisdn, i32 week_number, float revenue_usd}
+                serialization.format ,
+                serialization.lib org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+                totalSize 0
+                transient_lastDdlTime 1657295496
+              serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+              name: telco_db.revenue_stg
+
+  Stage: Stage-1
+    Stats-Aggr Operator
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155625_45840053-c804-4c1b-8f85-233a93b44d41); Time taken: 0.075 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155625_45840053-c804-4c1b-8f85-233a93b44d41): load data inpath '/user/hadoop/telco/revenue' into table revenue_stg
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table telco_db.revenue_stg from hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/revenue
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155625_45840053-c804-4c1b-8f85-233a93b44d41); Time taken: 0.368 seconds
+INFO  : OK
+No rows affected (0.464 seconds)
+0: jdbc:hive2://localhost:10000/default> load data inpath '/user/hadoop/telco/devices' into table device_stg;
+Error: Error while compiling statement: FAILED: SemanticException Line 1:17 Invalid path ''/user/hadoop/telco/devices'': No files matching path hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/devices (state=42000,code=40000)
+0: jdbc:hive2://localhost:10000/default>
+0: jdbc:hive2://localhost:10000/default> load data inpath '/user/hadoop/telco/device' into table device_stg;
+INFO  : Compiling command(queryId=hive_20220708155721_ee13c31f-fde6-4f39-9433-1ab350ac9cda): load data inpath '/user/hadoop/telco/device' into table device_stg
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155721_ee13c31f-fde6-4f39-9433-1ab350ac9cda : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [MOVE]
+  Stage-1 depends on stages: Stage-0 [STATS]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Move Operator
+      tables:
+          replace: false
+          source: hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/device
+          table:
+              input format: org.apache.hadoop.mapred.TextInputFormat
+              output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+              properties:
+                COLUMN_STATS_ACCURATE {"BASIC_STATS":"true"}
+                bucket_count -1
+                column.name.delimiter ,
+                columns msisdn,imei_tac,brand_name,model_name,os_name,os_vendor
+                columns.comments
+                columns.types string:string:string:string:string:string
+                field.delim ,
+                file.inputformat org.apache.hadoop.mapred.TextInputFormat
+                file.outputformat org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+                line.delim
+
+                location hdfs://ip-172-31-44-109.ec2.internal:8020/user/hive/warehouse/telco_db.db/device_stg
+                name telco_db.device_stg
+                numFiles 0
+                numRows 0
+                rawDataSize 0
+                serialization.ddl struct device_stg { string msisdn, string imei_tac, string brand_name, string model_name, string os_name, string os_vendor}
+                serialization.format ,
+                serialization.lib org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+                totalSize 0
+                transient_lastDdlTime 1657295486
+              serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+              name: telco_db.device_stg
+
+  Stage: Stage-1
+    Stats-Aggr Operator
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155721_ee13c31f-fde6-4f39-9433-1ab350ac9cda); Time taken: 0.099 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155721_ee13c31f-fde6-4f39-9433-1ab350ac9cda): load data inpath '/user/hadoop/telco/device' into table device_stg
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table telco_db.device_stg from hdfs://ip-172-31-44-109.ec2.internal:8020/user/hadoop/telco/device
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20220708155721_ee13c31f-fde6-4f39-9433-1ab350ac9cda); Time taken: 0.44 seconds
+INFO  : OK
+No rows affected (0.561 seconds)
+0: jdbc:hive2://localhost:10000/default> select * from device_stg limit 5;
+INFO  : Compiling command(queryId=hive_20220708155734_58980763-51d4-414f-b5e5-737807bf334b): select * from device_stg limit 5
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:device_stg.msisdn, type:string, comment:null), FieldSchema(name:device_stg.imei_tac, type:string, comment:null), FieldSchema(name:device_stg.brand_name, type:string, comment:null), FieldSchema(name:device_stg.model_name, type:string, comment:null), FieldSchema(name:device_stg.os_name, type:string, comment:null), FieldSchema(name:device_stg.os_vendor, type:string, comment:null)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155734_58980763-51d4-414f-b5e5-737807bf334b : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: 5
+      Processor Tree:
+        TableScan
+          alias: device_stg
+          GatherStats: false
+          Select Operator
+            expressions: msisdn (type: string), imei_tac (type: string), brand_name (type: string), model_name (type: string), os_name (type: string), os_vendor (type: string)
+            outputColumnNames: _col0, _col1, _col2, _col3, _col4, _col5
+            Limit
+              Number of rows: 5
+              ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155734_58980763-51d4-414f-b5e5-737807bf334b); Time taken: 0.284 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155734_58980763-51d4-414f-b5e5-737807bf334b): select * from device_stg limit 5
+INFO  : Completed executing command(queryId=hive_20220708155734_58980763-51d4-414f-b5e5-737807bf334b); Time taken: 0.002 seconds
+INFO  : OK
++--------------------+-----------------------------------+---------------------------+-----------------------------------+---------------------+-----------------------+
+| device_stg.msisdn  |        device_stg.imei_tac        |   device_stg.brand_name   |       device_stg.model_name       | device_stg.os_name  | device_stg.os_vendor  |
++--------------------+-----------------------------------+---------------------------+-----------------------------------+---------------------+-----------------------+
+| SAMSUNG            | 7ce90a5469d6a07dc8c770956cc29482  | GALAXY J1 ACE (SM-J111F)  | c0e80ecc67484f293db0cf723146c9d6  | Android             | Google                |
+| WALTON             | 110f73736e1e1fe0ef5cb8a581bc0ec2  | OLVIO L22                 | 2bce0cd398cbc9b2478ecaf1ef62b2c1  |                     |                       |
+| LG                 | ddf90b7c597d7714637ecde342a8c609  | W1500                     | d7b8b49fafb853a3aef0c20d49bca845  | LG OS               | LG                    |
+| SYMPHONY           | c395eac49569e6741faf98284aef725c  | B13                       | d628f3b548dc74c5fde92323c61c819e  |                     |                       |
+| SAMSUNG            | 395b163b071e5880e66ac57c5768673e  | METRO SM-B350ED           | e33e767a53a8dceadebc3354221bbf6a  | Samsung OS          | Samsung               |
++--------------------+-----------------------------------+---------------------------+-----------------------------------+---------------------+-----------------------+
+5 rows selected (0.355 seconds)
+0: jdbc:hive2://localhost:10000/default> select * from revenue_stg limit 5;
+INFO  : Compiling command(queryId=hive_20220708155747_5847cf68-c719-403a-b24c-4702f1d7f7fe): select * from revenue_stg limit 5
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:revenue_stg.msisdn, type:string, comment:null), FieldSchema(name:revenue_stg.week_number, type:int, comment:null), FieldSchema(name:revenue_stg.revenue_usd, type:float, comment:null)], properties:null)
+INFO  : EXPLAIN output for queryid hive_20220708155747_5847cf68-c719-403a-b24c-4702f1d7f7fe : STAGE DEPENDENCIES:
+  Stage-0 is a root stage [FETCH]
+
+STAGE PLANS:
+  Stage: Stage-0
+    Fetch Operator
+      limit: 5
+      Processor Tree:
+        TableScan
+          alias: revenue_stg
+          GatherStats: false
+          Select Operator
+            expressions: msisdn (type: string), week_number (type: int), revenue_usd (type: float)
+            outputColumnNames: _col0, _col1, _col2
+            Limit
+              Number of rows: 5
+              ListSink
+
+
+INFO  : Completed compiling command(queryId=hive_20220708155747_5847cf68-c719-403a-b24c-4702f1d7f7fe); Time taken: 0.229 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=hive_20220708155747_5847cf68-c719-403a-b24c-4702f1d7f7fe): select * from revenue_stg limit 5
+INFO  : Completed executing command(queryId=hive_20220708155747_5847cf68-c719-403a-b24c-4702f1d7f7fe); Time taken: 0.002 seconds
+INFO  : OK
++-----------------------------------+--------------------------+--------------------------+
+|        revenue_stg.msisdn         | revenue_stg.week_number  | revenue_stg.revenue_usd  |
++-----------------------------------+--------------------------+--------------------------+
+| 66e94d24d8e0d5776a8a6b694782eff0  | 20                       | 26.0                     |
+| 66e94d24d8e0d5776a8a6b694782eff0  | 5                        | 34.0                     |
+| 66e94d24d8e0d5776a8a6b694782eff0  | 18                       | 31.0                     |
+| 66e94d24d8e0d5776a8a6b694782eff0  | 16                       | 35.0                     |
+| 66e94d24d8e0d5776a8a6b694782eff0  | 14                       | 24.0                     |
++-----------------------------------+--------------------------+--------------------------+
+5 rows selected (0.276 seconds)
+0: jdbc:hive2://localhost:10000/default> hadoop  fs -ls /user/hadoop/telco/
+. . . . . . . . . . . . . . . . . . . .> Closing: 0: jdbc:hive2://localhost:10000/default
+[hadoop@ip-172-31-44-109 ~]$ hadoop  fs -ls /user/hadoop/telco/
+Found 3 items
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 15:52 /user/hadoop/telco/crm
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 15:57 /user/hadoop/telco/device
+drwxr-xr-x   - hadoop hdfsadmingroup          0 2022-07-08 15:56 /user/hadoop/telco/revenue
+[hadoop@ip-172-31-44-109 ~]$ hadoop  fs -ls /user/hadoop/telco/crm
+Found 1 items
+-rw-r--r--   1 hadoop hdfsadmingroup          0 2022-07-08 10:49 /user/hadoop/telco/crm/_SUCCESS
+[hadoop@ip-172-31-44-109 ~]$
