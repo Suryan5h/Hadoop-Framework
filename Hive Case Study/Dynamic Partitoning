@@ -33,12 +33,6 @@ Saving to: ‘2019-Oct.csv’
 
 2022-07-10 11:50:29 (68.1 MB/s) - ‘2019-Oct.csv’ saved [482542278/482542278]
 
-[hadoop@ip-172-31-45-104 ~]$ hadoop fs -ls
--bash: hadoop: command not found
-[hadoop@ip-172-31-45-104 ~]$ fs
--bash: fs: command not found
-[hadoop@ip-172-31-45-104 ~]$ fs ls
--bash: fs: command not found
 [hadoop@ip-172-31-45-104 ~]$ ls -l
 total 471236
 -rw-rw-r-- 1 hadoop hadoop 482542278 Mar 17  2020 2019-Oct.csv
@@ -83,101 +77,7 @@ event_time,event_type,product_id,category_id,category_code,brand,price,user_id,u
 2019-10-01 00:00:19 UTC,cart,5739055,1487580008246412266,,kapous,4.75,377667011,81326ac6-daa4-4f0a-b488-fd0956a78733
 2019-10-01 00:00:24 UTC,cart,5825598,1487580009445982239,,,0.56,467916806,2f5b5546-b8cb-9ee7-7ecd-84276f8ef486
 2019-10-01 00:00:25 UTC,cart,5698989,1487580006317032337,,,1.27,385985999,d30965e8-1101-44ab-b45d-cc1bb9fae694
-[hadoop@ip-172-31-45-104 ~]$ hive
 
-Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
-Exception in thread "main" java.lang.RuntimeException: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata .HiveException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
-        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:636)
-        at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:553)
-        at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:750)
-        at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)
-        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:498)
-        at org.apache.hadoop.util.RunJar.run(RunJar.java:244)
-        at org.apache.hadoop.util.RunJar.main(RunJar.java:158)
-Caused by: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Unable to instantiate org.ap ache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
-        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:889)
-        at org.apache.hadoop.hive.ql.session.SessionState.getAuthenticator(SessionState.java:1483)
-        at org.apache.hadoop.hive.ql.session.SessionState.getUserFromAuthenticator(SessionState.java:1154)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.setupSessionAcls(TezSessionState.java:441)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.openInternal(TezSessionState.java:311)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.beginOpen(TezSessionState.java:210)
-        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:633)
-        ... 9 more
-Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: Unable to instantiate org.apache.hadoop.hive.ql.metadata .SessionHiveMetaStoreClient
-        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:921)
-        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:881)
-        ... 15 more
-Caused by: java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreC lient
-        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1742)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.<init>(RetryingMetaStoreClient.java:87)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:137)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:108)
-        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClientFactory.createMetaStoreClient(SessionHiveMeta StoreClientFactory.java:50)
-        at org.apache.hadoop.hive.ql.metadata.HiveUtils.createMetaStoreClient(HiveUtils.java:507)
-        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3856)
-        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3836)
-        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:917)
-        ... 16 more
-Caused by: java.lang.reflect.InvocationTargetException
-        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-        at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1740)
-        ... 24 more
-Caused by: MetaException(message:Could not connect to meta store using any of the URIs provided. Most recent failure:  org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)
-        at org.apache.thrift.transport.TSocket.open(TSocket.java:226)
-        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:478)
-        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.<init>(HiveMetaStoreClient.java:245)
-        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.<init>(SessionHiveMetaStoreClient.java:70)
-        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-        at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1740)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.<init>(RetryingMetaStoreClient.java:87)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:137)
-        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:108)
-        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClientFactory.createMetaStoreClient(SessionHiveMeta StoreClientFactory.java:50)
-        at org.apache.hadoop.hive.ql.metadata.HiveUtils.createMetaStoreClient(HiveUtils.java:507)
-        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3856)
-        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3836)
-        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:917)
-        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:881)
-        at org.apache.hadoop.hive.ql.session.SessionState.getAuthenticator(SessionState.java:1483)
-        at org.apache.hadoop.hive.ql.session.SessionState.getUserFromAuthenticator(SessionState.java:1154)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.setupSessionAcls(TezSessionState.java:441)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.openInternal(TezSessionState.java:311)
-        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.beginOpen(TezSessionState.java:210)
-        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:633)
-        at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:553)
-        at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:750)
-        at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)
-        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:498)
-        at org.apache.hadoop.util.RunJar.run(RunJar.java:244)
-        at org.apache.hadoop.util.RunJar.main(RunJar.java:158)
-Caused by: java.net.ConnectException: Connection refused (Connection refused)
-        at java.net.PlainSocketImpl.socketConnect(Native Method)
-        at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
-        at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
-        at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
-        at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-        at java.net.Socket.connect(Socket.java:607)
-        at org.apache.thrift.transport.TSocket.open(TSocket.java:221)
-        ... 32 more
-)
-        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:527)
-        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.<init>(HiveMetaStoreClient.java:245)
-        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.<init>(SessionHiveMetaStoreClient.java:70)
-        ... 29 more
-[hadoop@ip-172-31-45-104 ~]$ show databases;
--bash: show: command not found
 [hadoop@ip-172-31-45-104 ~]$ hive
 
 Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
