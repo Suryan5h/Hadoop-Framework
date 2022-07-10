@@ -1,0 +1,449 @@
+login as: hadoop
+Authenticating with public key "try_pig"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+
+[hadoop@ip-172-31-45-104 ~]$ wget https://e-commerce-events-ml.s3.amazonaws.com/                                      2019-Oct.csv
+--2022-07-10 11:50:22--  https://e-commerce-events-ml.s3.amazonaws.com/2019-Oct.                                      csv
+Resolving e-commerce-events-ml.s3.amazonaws.com (e-commerce-events-ml.s3.amazona                                      ws.com)... 52.217.141.185
+Connecting to e-commerce-events-ml.s3.amazonaws.com (e-commerce-events-ml.s3.ama                                      zonaws.com)|52.217.141.185|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 482542278 (460M) [text/csv]
+Saving to: ‘2019-Oct.csv’
+
+100%[======================================>] 482,542,278 68.1MB/s   in 6.8s
+
+2022-07-10 11:50:29 (68.1 MB/s) - ‘2019-Oct.csv’ saved [482542278/482542278]
+
+[hadoop@ip-172-31-45-104 ~]$ hadoop fs -ls
+-bash: hadoop: command not found
+[hadoop@ip-172-31-45-104 ~]$ fs
+-bash: fs: command not found
+[hadoop@ip-172-31-45-104 ~]$ fs ls
+-bash: fs: command not found
+[hadoop@ip-172-31-45-104 ~]$ ls -l
+total 471236
+-rw-rw-r-- 1 hadoop hadoop 482542278 Mar 17  2020 2019-Oct.csv
+[hadoop@ip-172-31-45-104 ~]$ wget https://e-commerce-events-ml.s3.amazonaws.com/                                      2019-Nov.csv
+--2022-07-10 11:51:03--  https://e-commerce-events-ml.s3.amazonaws.com/2019-Nov.                                      csv
+Resolving e-commerce-events-ml.s3.amazonaws.com (e-commerce-events-ml.s3.amazona                                      ws.com)... 54.231.227.137
+Connecting to e-commerce-events-ml.s3.amazonaws.com (e-commerce-events-ml.s3.ama                                      zonaws.com)|54.231.227.137|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 545839412 (521M) [text/csv]
+Saving to: ‘2019-Nov.csv’
+
+100%[======================================>] 545,839,412 66.9MB/s   in 7.7s
+
+2022-07-10 11:51:11 (67.4 MB/s) - ‘2019-Nov.csv’ saved [545839412/545839412]
+
+[hadoop@ip-172-31-45-104 ~]$ ls -l
+total 1004284
+-rw-rw-r-- 1 hadoop hadoop 545839412 Mar 17  2020 2019-Nov.csv
+-rw-rw-r-- 1 hadoop hadoop 482542278 Mar 17  2020 2019-Oct.csv
+[hadoop@ip-172-31-45-104 ~]$ mkdir hive_pi_cs
+[hadoop@ip-172-31-45-104 ~]$ cp 2019-Nov.csv hive_pi_cs/
+[hadoop@ip-172-31-45-104 ~]$ cp 2019-Oct.csv hive_pi_cs/
+[hadoop@ip-172-31-45-104 ~]$ cat hive_pi_cs/2019-Nov.csv | head
+event_time,event_type,product_id,category_id,category_code,brand,price,user_id,user_session
+2019-11-01 00:00:02 UTC,view,5802432,1487580009286598681,,,0.32,562076640,09fafd6c-6c99-46b1-834f-33527f4de241
+2019-11-01 00:00:09 UTC,cart,5844397,1487580006317032337,,,2.38,553329724,2067216c-31b5-455d-a1cc-af0575a34ffb
+2019-11-01 00:00:10 UTC,view,5837166,1783999064103190764,,pnb,22.22,556138645,57ed222e-a54a-4907-9944-5a875c2d7f4f
+2019-11-01 00:00:11 UTC,cart,5876812,1487580010100293687,,jessnail,3.16,564506666,186c1951-8052-4b37-adce-dd9644b1d5f 7
+2019-11-01 00:00:24 UTC,remove_from_cart,5826182,1487580007483048900,,,3.33,553329724,2067216c-31b5-455d-a1cc-af0575a 34ffb
+2019-11-01 00:00:24 UTC,remove_from_cart,5826182,1487580007483048900,,,3.33,553329724,2067216c-31b5-455d-a1cc-af0575a 34ffb
+2019-11-01 00:00:25 UTC,view,5856189,1487580009026551821,,runail,15.71,562076640,09fafd6c-6c99-46b1-834f-33527f4de241
+2019-11-01 00:00:32 UTC,view,5837835,1933472286753424063,,,3.49,514649199,432a4e95-375c-4b40-bd36-0fc039e77580
+2019-11-01 00:00:34 UTC,remove_from_cart,5870838,1487580007675986893,,milv,0.79,429913900,2f0bff3c-252f-4fe6-afcd-5d8 a6a92839a
+[hadoop@ip-172-31-45-104 ~]$ cat hive_pi_cs/2019-Oct.csv | head
+event_time,event_type,product_id,category_id,category_code,brand,price,user_id,user_session
+2019-10-01 00:00:00 UTC,cart,5773203,1487580005134238553,,runail,2.62,463240011,26dd6e6e-4dac-4778-8d2c-92e149dab885
+2019-10-01 00:00:03 UTC,cart,5773353,1487580005134238553,,runail,2.62,463240011,26dd6e6e-4dac-4778-8d2c-92e149dab885
+2019-10-01 00:00:07 UTC,cart,5881589,2151191071051219817,,lovely,13.48,429681830,49e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:07 UTC,cart,5723490,1487580005134238553,,runail,2.62,463240011,26dd6e6e-4dac-4778-8d2c-92e149dab885
+2019-10-01 00:00:15 UTC,cart,5881449,1487580013522845895,,lovely,0.56,429681830,49e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:16 UTC,cart,5857269,1487580005134238553,,runail,2.62,430174032,73dea1e7-664e-43f4-8b30-d32b9d5af04f
+2019-10-01 00:00:19 UTC,cart,5739055,1487580008246412266,,kapous,4.75,377667011,81326ac6-daa4-4f0a-b488-fd0956a78733
+2019-10-01 00:00:24 UTC,cart,5825598,1487580009445982239,,,0.56,467916806,2f5b5546-b8cb-9ee7-7ecd-84276f8ef486
+2019-10-01 00:00:25 UTC,cart,5698989,1487580006317032337,,,1.27,385985999,d30965e8-1101-44ab-b45d-cc1bb9fae694
+[hadoop@ip-172-31-45-104 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+Exception in thread "main" java.lang.RuntimeException: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata .HiveException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:636)
+        at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:553)
+        at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:750)
+        at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.apache.hadoop.util.RunJar.run(RunJar.java:244)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:158)
+Caused by: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Unable to instantiate org.ap ache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:889)
+        at org.apache.hadoop.hive.ql.session.SessionState.getAuthenticator(SessionState.java:1483)
+        at org.apache.hadoop.hive.ql.session.SessionState.getUserFromAuthenticator(SessionState.java:1154)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.setupSessionAcls(TezSessionState.java:441)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.openInternal(TezSessionState.java:311)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.beginOpen(TezSessionState.java:210)
+        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:633)
+        ... 9 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: Unable to instantiate org.apache.hadoop.hive.ql.metadata .SessionHiveMetaStoreClient
+        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:921)
+        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:881)
+        ... 15 more
+Caused by: java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreC lient
+        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1742)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.<init>(RetryingMetaStoreClient.java:87)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:137)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:108)
+        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClientFactory.createMetaStoreClient(SessionHiveMeta StoreClientFactory.java:50)
+        at org.apache.hadoop.hive.ql.metadata.HiveUtils.createMetaStoreClient(HiveUtils.java:507)
+        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3856)
+        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3836)
+        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:917)
+        ... 16 more
+Caused by: java.lang.reflect.InvocationTargetException
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+        at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1740)
+        ... 24 more
+Caused by: MetaException(message:Could not connect to meta store using any of the URIs provided. Most recent failure:  org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)
+        at org.apache.thrift.transport.TSocket.open(TSocket.java:226)
+        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:478)
+        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.<init>(HiveMetaStoreClient.java:245)
+        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.<init>(SessionHiveMetaStoreClient.java:70)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+        at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+        at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+        at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1740)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.<init>(RetryingMetaStoreClient.java:87)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:137)
+        at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:108)
+        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClientFactory.createMetaStoreClient(SessionHiveMeta StoreClientFactory.java:50)
+        at org.apache.hadoop.hive.ql.metadata.HiveUtils.createMetaStoreClient(HiveUtils.java:507)
+        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3856)
+        at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3836)
+        at org.apache.hadoop.hive.ql.session.SessionState.setAuthorizerV2Config(SessionState.java:917)
+        at org.apache.hadoop.hive.ql.session.SessionState.setupAuth(SessionState.java:881)
+        at org.apache.hadoop.hive.ql.session.SessionState.getAuthenticator(SessionState.java:1483)
+        at org.apache.hadoop.hive.ql.session.SessionState.getUserFromAuthenticator(SessionState.java:1154)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.setupSessionAcls(TezSessionState.java:441)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.openInternal(TezSessionState.java:311)
+        at org.apache.hadoop.hive.ql.exec.tez.TezSessionState.beginOpen(TezSessionState.java:210)
+        at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:633)
+        at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:553)
+        at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:750)
+        at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.apache.hadoop.util.RunJar.run(RunJar.java:244)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:158)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+        at java.net.PlainSocketImpl.socketConnect(Native Method)
+        at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+        at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+        at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+        at java.net.Socket.connect(Socket.java:607)
+        at org.apache.thrift.transport.TSocket.open(TSocket.java:221)
+        ... 32 more
+)
+        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:527)
+        at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.<init>(HiveMetaStoreClient.java:245)
+        at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.<init>(SessionHiveMetaStoreClient.java:70)
+        ... 29 more
+[hadoop@ip-172-31-45-104 ~]$ show databases;
+-bash: show: command not found
+[hadoop@ip-172-31-45-104 ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: false
+hive> show databases;
+OK
+default
+Time taken: 1.558 seconds, Fetched: 1 row(s)
+hive> create database if not exists clickstream;
+OK
+Time taken: 0.346 seconds
+hive> show databases;
+OK
+clickstream
+default
+Time taken: 0.377 seconds, Fetched: 2 row(s)
+hive> use clickstream;
+OK
+Time taken: 0.123 seconds
+hive> create table clickstream_stats(event_time string,event_type string,product_id string,category_id string,categor y_code string,brand string,price string,user_id string,user_session string) row format delimited fields terminated by ',' lines terminated by '\n' stored as textfile;
+OK
+Time taken: 1.295 seconds
+hive> load data local inpath '/home/hadoop/hive_pi_cs/2019-Nov.csv' into table clickstream_stats;
+Loading data to table clickstream.clickstream_stats
+OK
+Time taken: 10.063 seconds
+hive> load data local inpath '/home/hadoop/hive_pi_cs/2019-Oct.csv' into table clickstream_stats;
+Loading data to table clickstream.clickstream_stats
+OK
+Time taken: 8.116 seconds
+hive> select * from clickstream_stats order by event_time asc limit 20;
+Query ID = hadoop_20220710120859_3d78bbd3-28d9-4edf-a8b4-a98e0685ce1b
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0002)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 37.86 s
+----------------------------------------------------------------------------------------------
+OK
+2019-10-01 00:00:00 UTC cart    5773203 1487580005134238553             runail  2.62    463240011       26dd6e6e-4dac -4778-8d2c-92e149dab885
+2019-10-01 00:00:03 UTC cart    5773353 1487580005134238553             runail  2.62    463240011       26dd6e6e-4dac -4778-8d2c-92e149dab885
+2019-10-01 00:00:07 UTC cart    5723490 1487580005134238553             runail  2.62    463240011       26dd6e6e-4dac -4778-8d2c-92e149dab885
+2019-10-01 00:00:07 UTC cart    5881589 2151191071051219817             lovely  13.48   429681830       49e8d843-adf3 -428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:15 UTC cart    5881449 1487580013522845895             lovely  0.56    429681830       49e8d843-adf3 -428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:16 UTC cart    5857269 1487580005134238553             runail  2.62    430174032       73dea1e7-664e -43f4-8b30-d32b9d5af04f
+2019-10-01 00:00:19 UTC cart    5739055 1487580008246412266             kapous  4.75    377667011       81326ac6-daa4 -4f0a-b488-fd0956a78733
+2019-10-01 00:00:24 UTC cart    5825598 1487580009445982239                     0.56    467916806       2f5b5546-b8cb -9ee7-7ecd-84276f8ef486
+2019-10-01 00:00:25 UTC cart    5698989 1487580006317032337                     1.27    385985999       d30965e8-1101 -44ab-b45d-cc1bb9fae694
+2019-10-01 00:00:26 UTC view    5875317 2029082628195353599                     1.59    474232307       445f2b74-5e4c -427e-b7fa-6e0a28b156fe
+2019-10-01 00:00:28 UTC remove_from_cart        5834172 1487580013522845895             runail  0.95    429681830   4 9e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:28 UTC view    5692917 1487580004857414477             lianail 5.54    555446068       4257671a-efc8 -4e58-96c2-3ab457916d78
+2019-10-01 00:00:30 UTC remove_from_cart        5809103 1487580013522845895             irisk   0.60    429681830   4 9e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:30 UTC remove_from_cart        5809103 1487580013522845895             irisk   0.60    429681830   4 9e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:32 UTC remove_from_cart        5779403 1487580013506068678                     12.22   429681830   4 9e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:33 UTC remove_from_cart        5779403 1487580013506068678                     12.22   429681830   4 9e8d843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:34 UTC cart    5670337 1752742615205281895                     2.38    546705258       3b5c65c0-bb1c -453b-b340-4ebf973a3136
+2019-10-01 00:00:42 UTC cart    5836522 1487580013522845895             nagaraku        0.40    429681830       49e8d 843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:43 UTC cart    5836522 1487580013522845895             nagaraku        0.40    429681830       49e8d 843-adf3-428b-a2c3-fe8bc6a307c9
+2019-10-01 00:00:48 UTC cart    5859414 1487580005671109489             masura  2.37    555442940       618f3d7d-2939 -47ea-8f1d-07a4f97d0fe2
+Time taken: 48.956 seconds, Fetched: 20 row(s)
+hive> select * from clickstream_stats order by event_time desc limit 5;
+Query ID = hadoop_20220710121006_162e3540-1d17-4177-a61f-a2322fdd32a9
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0002)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 43.10 s
+----------------------------------------------------------------------------------------------
+OK
+event_time      event_type      product_id      category_id     category_code   brand   price   user_id user_session
+event_time      event_type      product_id      category_id     category_code   brand   price   user_id user_session
+2019-11-30 23:59:58 UTC view    5880201 2029731308699124089             rasyan  3.76    579969854       e9fa2c3e-8c9e -448c-880a-21ca57c18b3b
+2019-11-30 23:59:57 UTC view    5779406 2151191071051219817                     2.86    540006764       d4b5aa49-d731 -40f1-92f1-277416d6e063
+2019-11-30 23:59:47 UTC view    5867785 1487580007835370453             kims    31.10   572579084       d42865b7-7e04 -4038-9be0-a59165625f06
+Time taken: 44.318 seconds, Fetched: 5 row(s)
+hive> set hive.exec.dynamic.partiton.mode = nonstrict;
+Query returned non-zero code: 1, cause: hive configuration hive.exec.dynamic.partiton.mode does not exists.
+hive> set hive.exec.dynamic.partition = true;
+hive> set hive.enforce.bucketing = true;
+hive> create table if not exists part_cs1(event_time string,event_type string,product_id string,category_id string,category_code string,brand string,price string,user_id string,user_session string) partition by (mnth int) clustered by (event_type) into 4 buckets row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' stored as textfile;
+FAILED: ParseException line 1:192 missing EOF at 'partition' near ')'
+hive> create table if not exists part_cs1(event_time string,event_type string,product_id string,category_id string,category_code string,brand string,price string,user_id string,user_session string) partitioned by (mnth int) clustered by (event_type) into 4 buckets row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' stored as textfile;
+OK
+Time taken: 0.116 seconds
+hive> insert into table part_cs1 partition(mnth) select *,month(event_time) as mnth from clickstream_stats where month(event_time) in (10,11);
+FAILED: SemanticException [Error 10096]: Dynamic partition strict mode requires at least one static partition column. To turn this off set hive.exec.dynamic.partition.mode=nonstrict
+hive> set hive.exec.dynamic.partition.mode=nonstrict;
+hive> insert into table part_cs1 partition(mnth) select *,month(event_time) as mnth from clickstream_stats where month(event_time) in (10,11);
+Query ID = hadoop_20220710122805_16299ba5-0755-4cc1-b912-84345d8555c2
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      6          6        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 157.40 s
+----------------------------------------------------------------------------------------------
+Loading data to table clickstream.part_cs1 partition (mnth=null)
+
+Loaded : 2/2 partitions.
+         Time taken to load dynamic partitions: 0.273 seconds
+         Time taken for adding to write entity : 0.007 seconds
+OK
+Time taken: 167.909 seconds
+hive> show partitions part_cs1;
+OK
+mnth=10
+mnth=11
+Time taken: 0.106 seconds, Fetched: 2 row(s)
+hive> select round(sum(price),2) as Oct_Revenue from clickstream_stats
+    > where month(event_time) = 10
+    > and event_type = 'Purchase';
+Query ID = hadoop_20220710123413_7b1b05ee-96ee-4a2f-b509-e2174982752e
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 40.99 s
+----------------------------------------------------------------------------------------------
+OK
+NULL
+Time taken: 41.965 seconds, Fetched: 1 row(s)
+hive> select round(sum(price),2) as Oct_Revenue from clickstream_stats
+    > where month(event_time) = 10
+    > and event_type = 'purchase';
+Query ID = hadoop_20220710123508_20a9a56b-8c5b-4b75-a771-67115dc95c35
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 41.42 s
+----------------------------------------------------------------------------------------------
+OK
+1211538.43
+Time taken: 42.751 seconds, Fetched: 1 row(s)
+hive> select round(sum(price),2) as Oct_Revenue from part_cs1
+    > where month(event_time) = 10
+    > and event_type = 'purchase';
+Query ID = hadoop_20220710123658_130741bf-9b29-40e1-8adc-522d9f07b3a1
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      9          9        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 79.38 s
+----------------------------------------------------------------------------------------------
+OK
+1211538.43
+Time taken: 80.121 seconds, Fetched: 1 row(s)
+hive> select round(sum(price),2) as Oct_Revenue from clickstream_stats
+    > where month(event_time) = 10
+    > and event_type = 'purchase';
+Query ID = hadoop_20220710123936_1b5989e2-433a-4a01-b969-95ec503f0487
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 39.72 s
+----------------------------------------------------------------------------------------------
+OK
+1211538.43
+Time taken: 40.689 seconds, Fetched: 1 row(s)
+hive> select round(sum(price),2) as Oct_Revenue from part_cs1
+    > where month(event_time) = 10
+    > Display all 574 possibilities? (y or n)
+    > sdaasdasd;
+FAILED: ParseException line 3:0 extraneous input 'sdaasdasd' expecting EOF near '<EOF>'
+hive> select round(sum(price),2) as Oct_Revenue from part_cs1
+    > where mnth = 10
+    > and event_type = 'purchase';
+Query ID = hadoop_20220710124203_0825f93d-926a-40f8-be5c-bdc6db001e83
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0003)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      6          6        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 43.48 s
+----------------------------------------------------------------------------------------------
+OK
+1211538.43
+Time taken: 44.52 seconds, Fetched: 1 row(s)
+hive> select month(event_time) as Month,sum(price) as Price from clickstream_stats
+    > where event_type = 'purchase' group by month(event_time);
+Query ID = hadoop_20220710124819_1da4b3c3-f540-45be-91ec-7a7c1f4b68db
+Total jobs = 1
+Launching Job 1 out of 1
+Tez session was closed. Reopening...
+Session re-established.
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0004)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      8          8        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      6          6        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 34.26 s
+----------------------------------------------------------------------------------------------
+OK
+11      1531016.8999999657
+10      1211538.429999982
+Time taken: 42.123 seconds, Fetched: 2 row(s)
+hive> select mnth,sum(price) as Price from part_cs1
+    > where event_type = 'purchase' group by mnth;
+Query ID = hadoop_20220710124919_18264cb1-0f21-48aa-b498-8e18e946384f
+Total jobs = 1
+Launching Job 1 out of 1
+Status: Running (Executing on YARN cluster with App id application_1657454090977_0004)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      9          9        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      2          2        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 68.76 s
+----------------------------------------------------------------------------------------------
+OK
+10      1211538.4299998446
+11      1531016.899999858
+Time taken: 69.453 seconds, Fetched: 2 row(s)
+hive>
