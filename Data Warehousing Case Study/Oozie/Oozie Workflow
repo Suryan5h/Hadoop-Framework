@@ -1,0 +1,5 @@
+Error:
+Cannot access: //. The HDFS REST service is not available. Note: you are a Hue admin but not a HDFS superuser, "hdfs" or part of HDFS supergroup, "supergroup".
+
+Resolution : 
+Not yet resolved.
