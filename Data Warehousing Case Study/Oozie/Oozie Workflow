@@ -1,3 +1,8 @@
+Oozie is a workflow scheduler system to manage Apache Hadoop jobs.
+Oozie is integrated with the rest of the Hadoop stack supporting several types of Hadoop jobs out of the box (such as Java map-reduce, 
+Streaming map-reduce, Pig, Hive, Sqoop and Distcp) as well as system specific jobs (such as Java programs and shell scripts).
+
+Oozie is a scalable, reliable and extensible system.
 Error:
 Cannot access: //. The HDFS REST service is not available. Note: you are a Hue admin but not a HDFS superuser, "hdfs" or part of HDFS supergroup, "supergroup".
 
